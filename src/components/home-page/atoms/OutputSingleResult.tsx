@@ -14,7 +14,11 @@ export default function OutputSingleResult(props: {
     <div className="mb-4 flex flex-col bg-gray-800 rounded w-full">
       <div className="p-3 border-b-2 border-gray-900 flex items-center">
         {props.imageUrl && (
-          <Image src={props.imageUrl} className="w-7 h-7 rounded-full mr-3" />
+          <Image
+            src={props.imageUrl}
+            className="w-7 h-7 rounded-full mr-3"
+            unoptimized
+          />
         )}
         <span className="text-white font-semibold">{props.name}</span>
       </div>
