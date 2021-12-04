@@ -15,7 +15,7 @@ export default function QueryCanvasFilters(props: {
   return (
     <>
       {keys.map((key) => (
-        <FilterBlock id={key} />
+        <FilterBlock id={key} key={key} />
       ))}
     </>
   );

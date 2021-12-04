@@ -16,13 +16,13 @@ export default function TermsPage() {
             Last update: December 3rd, 2021
             <br />
             <br />
-            These Terms of Use (“Terms”) apply to the website at
-            http://www.dataharvest.lol (the "Site") and the services offered
-            through the Site (hereafter individually a “Service” and
-            collectively the “Services”). By using the Site or Services, you
-            agree be bound by the then most current version of the Terms, which
-            can be accessed from the Sites. If you do not agree to these Terms,
-            please do not use the Sites or Services.
+            These Terms of Use (&quot;Terms&quot;) apply to the website at
+            http://www.dataharvest.lol (the &quot;Site&quot;) and the services
+            offered through the Site (hereafter individually a “Service” and
+            collectively the &quot;Services&quot;). By using the Site or
+            Services, you agree be bound by the then most current version of the
+            Terms, which can be accessed from the Sites. If you do not agree to
+            these Terms, please do not use the Sites or Services.
           </GenericParagraph>
           <div className="mt-8">
             <GenericSectionSubtitle>Changes</GenericSectionSubtitle>
@@ -51,10 +51,10 @@ export default function TermsPage() {
               Legends data from our proprietary database of games. Users may
               request the addition of their games to the database, and
               DataHarvest periodically adds games to the database using the
-              match history of random ranked players. The Site's purpose is to
-              allow users to query for data they couldn't otherwise get directly
-              from other more direct stats websites, and to be able to get
-              historical data in the long run (we try to very rarely delete
+              match history of random ranked players. The Site&apos;s purpose is
+              to allow users to query for data they couldn&apos;t otherwise get
+              directly from other more direct stats websites, and to be able to
+              get historical data in the long run (we try to very rarely delete
               games from our database).
             </GenericParagraph>
           </div>

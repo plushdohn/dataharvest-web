@@ -75,7 +75,7 @@ export default function GuidePage() {
                 using some criteria. <br /> <br />
                 One of the most common examples is wanting to only get data
                 about your own ranked games. Another common case is making sure
-                we're only taking into account Solo Queue games from a
+                we&apos;re only taking into account Solo Queue games from a
                 particular region (Korea for example). Our query would contain
                 this set of filters:
               </GuideParagraph>
@@ -93,13 +93,14 @@ export default function GuidePage() {
               <GuideParagraph>
                 Keep in mind that filters do just that. A common mistake is to
                 assume the query understands your subject (see subject section
-                next) when you've only given it filters, here's an example:
+                next) when you&apos;ve only given it filters, here&apos;s an
+                example:
               </GuideParagraph>
               <ExampleBlock>
                 <ExampleBlockText>
-                  The following query may look like it's using all games from
-                  the summoner "Babus" and then calculating their average damage
-                  to structures.
+                  The following query may look like it&apos;s using all games
+                  from the summoner &quot;Babus&quot; and then calculating their
+                  average damage to structures.
                 </ExampleBlockText>
                 <StarterDummy id={StarterId.All} initialState={null} />
                 <FilterDummy id={FilterId.Summoner} initialState="Babus" />
@@ -107,11 +108,11 @@ export default function GuidePage() {
                   id={OperationId.AverageDamageDealtToStructures}
                 />
                 <ExampleBlockText className="mt-4">
-                  Instead it's actually just telling the database to use games
-                  where the summoner "Babus" has played in.{" "}
+                  Instead it&apos;s actually just telling the database to use
+                  games where the summoner &quot;Babus&quot; has played in.{" "}
                   <strong>
-                    The database still doesn't know that they will be the focus
-                    of the operations.
+                    The database still doesn&apos;t know that they will be the
+                    focus of the operations.
                   </strong>{" "}
                   This is intentional and allows for a lot more freedom in other
                   scenarios. <br />
@@ -145,7 +146,7 @@ export default function GuidePage() {
                 <br />
                 <br />
                 However a subject may also have a broader scope, such as anyone
-                who's playing in a particular role, or anyone who owns a
+                who&apos;s playing in a particular role, or anyone who owns a
                 specific mythic item.
               </GuideParagraph>
               <ExampleBlock>
@@ -170,12 +171,12 @@ export default function GuidePage() {
                 <br />
                 In this case the best thing to do is to still use the
                 appropriate filter (Summoner, in this case) for two reasons:
-                firstly it's logically correct to reduce the sample size to just
-                the games with a particular summoner, making the query's meaning
-                more apparent to anyone who reads it; secondly dataharvest's
-                current implementation isn't smart enough to handle these cases,
-                so not adding that filter has a much bigger toll on our
-                database. <br />
+                firstly it&apos;s logically correct to reduce the sample size to
+                just the games with a particular summoner, making the
+                query&apos;s meaning more apparent to anyone who reads it;
+                secondly dataharvest&apos;s current implementation isn&apos;t
+                smart enough to handle these cases, so not adding that filter
+                has a much bigger toll on our database. <br />
                 <br /> In the future our database will understand these
                 scenarios and regardlessly add a filter on our end.
               </GuideParagraph>
@@ -188,14 +189,14 @@ export default function GuidePage() {
                 on them separately. <br />
                 <br />
                 This allows you to answer any question that might contain the
-                word "which", such as "Which champion has the highest average
-                vision score?" or "Which summoner in EUW has the most damage to
-                structures?".
+                word &quot;which&quot;, such as &quot;Which champion has the
+                highest average vision score?&quot; or &quot;Which summoner in
+                EUW has the most damage to structures?&quot;.
               </GuideParagraph>
               <ExampleBlock>
                 <ExampleBlockText>
-                  Here's a query to tell which keystone on Jhin leads to the
-                  highest average damage to champions:
+                  Here&apos;s a query to tell which keystone on Jhin leads to
+                  the highest average damage to champions:
                 </ExampleBlockText>
                 <StarterDummy id={StarterId.All} initialState={null} />
                 <FilterDummy id={FilterId.Champion} initialState="Jhin" />
@@ -212,9 +213,9 @@ export default function GuidePage() {
               <GuideParagraph>
                 In general we aim to have as many grouping blocks as we find
                 necessary (they get added over time based on our needs and user
-                feedback), but when there isn't the grouping you need it's
-                possible to run multiple queries and write down the different
-                results.
+                feedback), but when there isn&apos;t the grouping you need
+                it&apos;s possible to run multiple queries and write down the
+                different results.
               </GuideParagraph>
             </div>
             <div className="mt-6">

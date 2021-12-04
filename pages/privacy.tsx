@@ -17,14 +17,14 @@ export default function PrivacyPage() {
             <br />
             <br />
             We value your privacy. Please read the following carefully to
-            understand our Privacy Policy (“Policy”) regarding use of our
-            website https://www.dataharvest.lol (the "Site") and the services
-            provided through our Site (“Services”). This Policy describes the
-            personal information we collect from users of the Site and Services
-            and how we use and share such information. If you use our Site and
-            Services, you agree to use of your personal information under this
-            Policy. If you do not agree to this Policy, please do not use our
-            Site or Services.
+            understand our Privacy Policy (&quot;Policy&quot;) regarding use of
+            our website https://www.dataharvest.lol (the &quot;Site&quot;) and
+            the services provided through our Site (&quot;Services&quot;). This
+            Policy describes the personal information we collect from users of
+            the Site and Services and how we use and share such information. If
+            you use our Site and Services, you agree to use of your personal
+            information under this Policy. If you do not agree to this Policy,
+            please do not use our Site or Services.
           </GenericParagraph>
           <div className="mt-8">
             <GenericSectionSubtitle>
@@ -155,8 +155,8 @@ export default function PrivacyPage() {
               will be handled in accordance with this Privacy Policy.
               <br />
               <br />
-              We don't automatically delete information unless we need to. You
-              may request the deletion of data by contacting us at
+              We don&apos;t automatically delete information unless we need to.
+              You may request the deletion of data by contacting us at
               team@dataharvest.lol
             </GenericParagraph>
           </div>
@@ -165,9 +165,9 @@ export default function PrivacyPage() {
               Cookies and Other Tracking Mechanisms
             </GenericSectionSubtitle>
             <GenericParagraph>
-              We don't make use of cookies of any kind for any purpose, but our
-              third-party service providers may. Our Site and Services may track
-              your activity locally on your machine (such as when you last
+              We don&apos;t make use of cookies of any kind for any purpose, but
+              our third-party service providers may. Our Site and Services may
+              track your activity locally on your machine (such as when you last
               opened the website) to show you updated content or to notify you
               of events.
               <br />
