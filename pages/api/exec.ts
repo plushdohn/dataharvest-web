@@ -1,0 +1,56 @@
+import type { NextApiRequest, NextApiResponse } from "next";
+import verifyCaptcha from "utils/captcha";
+import { connectToMongoInstance } from "../../utils/mongo";
+import { parse } from "../../utils/queryParser";
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  // Only allow POST requests
+  if (req.method !== "POST") {
+    return res.status(400).json({ message: "Only POST requests are allowed." });
+  }
+
+  // Verify captcha
+  const captcha = req.body.captcha;
+
+  try {
+    await verifyCaptcha(captcha);
+  } catch (err) {
+    return res.status(403).json({ message: "Invalid captcha:" + err });
+  }
+
+  // Try to parse query
+  let parsedQuery;
+  try {
+    parsedQuery = parse(req.body.query);
+  } catch (err) {
+    return res
+      .status(400)
+      .json({ message: "The requested query was invalid:" + err });
+  }
+
+  // Connect to the database
+  let db;
+  try {
+    db = await connectToMongoInstance();
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: "Couldn't establish connection to database:" + err });
+  }
+
+  try {
+    const games = await db
+      .collection("matches")
+      .aggregate(parsedQuery)
+      .toArray();
+
+    return res.status(200).json(games);
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: "Error while querying for games:" + err });
+  }
+}
