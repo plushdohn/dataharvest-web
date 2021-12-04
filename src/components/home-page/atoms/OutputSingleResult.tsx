@@ -1,7 +1,6 @@
 import { VALUES_DICTIONARY_EN } from "shared/dictionaries";
 import { OperationField } from "shared/types";
 import OutputSingleValue from "./OutputSinglevalue";
-import Image from "next/image";
 
 export default function OutputSingleResult(props: {
   name: string;
@@ -14,11 +13,7 @@ export default function OutputSingleResult(props: {
     <div className="mb-4 flex flex-col bg-gray-800 rounded w-full">
       <div className="p-3 border-b-2 border-gray-900 flex items-center">
         {props.imageUrl && (
-          <Image
-            src={props.imageUrl}
-            className="w-7 h-7 rounded-full mr-3"
-            unoptimized
-          />
+          <img src={props.imageUrl} className="w-7 h-7 rounded-full mr-3" />
         )}
         <span className="text-white font-semibold">{props.name}</span>
       </div>
