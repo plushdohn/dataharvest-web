@@ -4,8 +4,8 @@ import SelectInputForBlocks from "@/components/SelectInputForBlocks";
 import { RootState } from "@/src/store";
 
 export default function ChampionWithMythicFilter(props: {
-  args: [string, number];
-  setArgs: (n: [string, number]) => any;
+  args: [string, string];
+  setArgs: (n: [string, string]) => any;
 }) {
   const ddragon = useSelector((state: RootState) => state.dataDragon);
 
@@ -14,7 +14,8 @@ export default function ChampionWithMythicFilter(props: {
   }
 
   function handleMythicChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    props.setArgs([props.args[0], parseInt(e.target.value)]);
+    console.log(e.target.value);
+    props.setArgs([props.args[0], e.target.value]);
   }
 
   return (

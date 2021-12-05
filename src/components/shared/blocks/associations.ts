@@ -108,7 +108,7 @@ export const ASSOCIATIONS: {
     },
     [FilterId.ChampionWithMythic]: {
       component: ChampionWithMythicFilter,
-      initialState: ["Aatrox", 6632],
+      initialState: ["Aatrox", "Everfrost"],
     },
   },
   subjects: {
