@@ -23,8 +23,15 @@ function useNormalizedQueryResponse(): {
     const values = omit(omit(group, "hint"), "_id");
 
     if (!group.hint) {
+      if (group._id === null) {
+        return {
+          name: "Result",
+          values,
+        };
+      }
+
       return {
-        name: "Result",
+        name: group._id as string,
         values,
       };
     }
