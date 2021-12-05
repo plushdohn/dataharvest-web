@@ -71,7 +71,43 @@ export default async function getMatchHistoryFromPlatformAndSummonerName(
     matchIds
   );
 
-  return matchHistory.map((match) => parseRiotMatch(match));
+  return await addAverageRankToMatchList(
+    matchHistory.map((match) => parseRiotMatch(match))
+  );
+}
+
+async function addAverageRankToMatchList(
+  matches: ParsedMatch[]
+): Promise<ParsedMatch[]> {
+  const promises = matches.map(async (match) => {
+    const rank = await getNumericSoloQueueRankFromSummonerName(
+      getPlatfromFromRiotPlatform(match.platformId),
+      match.participants[0].summonerName
+    );
+
+    return {
+      ...match,
+      averageRank: rank,
+    };
+  });
+
+  const results = await Promise.all(promises);
+
+  return results;
+}
+
+function getPlatfromFromRiotPlatform(riotPlatform: string): Platform {
+  const platform = Object.entries(PLATFORMS).find(
+    ([_, data]) => data.urlValue.toUpperCase() === riotPlatform
+  );
+
+  if (platform === undefined) {
+    throw new Error(
+      "Unsupported Riot Platform provided while converting from Riot Platform to Platform"
+    );
+  }
+
+  return platform[0] as Platform;
 }
 
 async function getMatchesFromPlatformAndArrayOfMatchIds(
@@ -110,7 +146,7 @@ async function getMatchIdsFromPlatformAndSummonerName(
 
   const matchIds = await makeRiotApiRequest<string[]>(
     PLATFORMS[platform as Platform].regionalEndpoint,
-    `/lol/match/v5/matches/by-puuid/${puuid}/ids?count=${N_GAMES_PER_PLAYER}`
+    `/lol/match/v5/matches/by-puuid/${puuid}/ids?count=${N_GAMES_PER_PLAYER}&type=ranked`
   );
 
   return matchIds;
@@ -126,6 +162,90 @@ async function getPuuidFromPlatformAndSummonerName(
   );
 
   return summonerInfo.puuid;
+}
+
+async function getSummonerIdFromPlatformAndSummonerName(
+  platform: Platform,
+  summonerName: string
+): Promise<string> {
+  const summonerInfo = await makeRiotApiRequest<{ id: string }>(
+    PLATFORMS[platform as Platform].urlValue,
+    `/lol/summoner/v4/summoners/by-name/${encodeURI(summonerName)}`
+  );
+
+  return summonerInfo.id;
+}
+
+async function getNumericSoloQueueRankFromSummonerName(
+  platform: Platform,
+  summonerName: string
+): Promise<number | null> {
+  enum Tier {
+    IRON = "IRON",
+    BRONZE = "BRONZE",
+    SILVER = "SILVER",
+    GOLD = "GOLD",
+    PLATINUM = "PLATINUM",
+    DIAMOND = "DIAMOND",
+    MASTER = "MASTER",
+    GRANDMASTER = "GRANDMASTER",
+    CHALLENGER = "CHALLENGER",
+  }
+
+  enum Rank {
+    I = "I",
+    II = "II",
+    III = "III",
+    IV = "IV",
+  }
+
+  const summonerId = await getSummonerIdFromPlatformAndSummonerName(
+    platform,
+    summonerName
+  );
+
+  const summonerRankInfo = await makeRiotApiRequest<
+    [{ queueType: string; tier: Tier; rank: Rank }]
+  >(
+    PLATFORMS[platform as Platform].urlValue,
+    `/lol/league/v4/entries/by-summoner/${summonerId}`
+  );
+
+  const soloQueueInfo = summonerRankInfo.find(
+    (el) => el.queueType === "RANKED_SOLO_5x5"
+  );
+
+  if (soloQueueInfo === undefined) {
+    return null;
+  }
+
+  const TIER_DICTIONARY: {
+    [key in Tier]: number;
+  } = {
+    IRON: 0,
+    BRONZE: 4,
+    SILVER: 8,
+    GOLD: 12,
+    PLATINUM: 16,
+    DIAMOND: 20,
+    MASTER: 24,
+    GRANDMASTER: 28,
+    CHALLENGER: 32,
+  };
+
+  const RANK_DICTIONARY: {
+    [key in Rank]: number;
+  } = {
+    I: 3,
+    II: 2,
+    III: 1,
+    IV: 0,
+  };
+
+  return (
+    TIER_DICTIONARY[soloQueueInfo.tier as Tier] +
+    RANK_DICTIONARY[soloQueueInfo.rank as Rank]
+  );
 }
 
 async function makeRiotApiRequest<T>(
