@@ -63,15 +63,14 @@ export function SubjectBlock<Type>(props: { id: SubjectId }) {
     );
   }
 
+  const ComponentToMount = ASSOCIATIONS.subjects[props.id].component;
+
   return (
     <BlockContainer
       kind={BlockKind.Subject}
       onClick={() => dispatch(removeSubject())}
     >
-      {ASSOCIATIONS.subjects[props.id].component({
-        args,
-        setArgs: handleChange,
-      })}
+      <ComponentToMount args={args} setArgs={handleChange} />
     </BlockContainer>
   );
 }
