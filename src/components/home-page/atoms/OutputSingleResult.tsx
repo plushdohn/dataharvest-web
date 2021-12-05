@@ -9,6 +9,7 @@ export default function OutputSingleResult(props: {
     [key in OperationField]: number;
   };
 }) {
+  console.log(props.name, props.imageUrl);
   return (
     <div className="mb-4 flex flex-col bg-gray-800 rounded w-full">
       <div className="p-3 border-b-2 border-gray-900 flex items-center">
