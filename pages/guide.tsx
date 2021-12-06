@@ -24,7 +24,7 @@ export default function GuidePage() {
       <Head>
         <title>Querying Guide - DataHarvest</title>
       </Head>
-      <div className="w-full p-8 overflow-y-auto">
+      <div className="w-full p-4 lg:p-8 overflow-y-auto">
         <div className=" flex flex-col max-w-3xl ">
           <GuideSectionTitle>
             TL;DR (if you already figured out how queries work)

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import { updateAllDataDragon } from "@/src/store/dataDragonReducer";
@@ -13,19 +13,28 @@ import {
 import { MYTHICS_SET } from "shared/dictionaries";
 import PickerPanel from "@/src/components/home-page/organisms/PickerPanel";
 import OutputPanel from "@/src/components/home-page/organisms/OutputPanel";
+import PickerModal from "@/src/components/home-page/organisms/PickerModal";
+import { RootState } from "@/src/store";
 
 function Home() {
+  const pickerModalOpen = useSelector(
+    (state: RootState) => state.ui.pickerModalOpen
+  );
+
   return (
     <>
       <Head>
         <title>DataHarvest - LoL query builder, block editor</title>
       </Head>
-      <div className="flex h-full min-h-0">
+      <div
+        className={`relative w-full flex flex-col lg:flex-row h-full min-h-0 ${
+          pickerModalOpen ? "overflow-y-hidden" : "overflow-y-auto"
+        } lg:overflow-y-visible`}
+      >
         <PickerPanel />
-        <div className="w-1/2 md:w-full flex flex-col 2xl:flex-row h-full">
-          <QueryCanvas />
-          <OutputPanel />
-        </div>
+        <QueryCanvas />
+        <OutputPanel />
+        {pickerModalOpen && <PickerModal />}
       </div>
     </>
   );

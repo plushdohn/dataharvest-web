@@ -9,7 +9,7 @@ export default function PrivacyPage() {
       <Head>
         <title>Privacy Policy - DataHarvest</title>
       </Head>
-      <div className="w-full p-8 overflow-y-auto">
+      <div className="w-full  p-4 lg:p-8 overflow-y-auto">
         <div className="flex flex-col w-full lg:w-1/2 2xl:w-1/3">
           <GenericSectionTitle>Privacy Policy</GenericSectionTitle>
           <GenericParagraph>

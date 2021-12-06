@@ -5,6 +5,7 @@ export interface UIState {
   shouldShowOutputPanel: boolean;
   queryCaptcha: string | null;
   refreshGamesCaptcha: string | null;
+  pickerModalOpen: boolean;
 }
 
 const INITIAL_STATE: UIState = {
@@ -12,6 +13,7 @@ const INITIAL_STATE: UIState = {
   shouldShowOutputPanel: false,
   queryCaptcha: null,
   refreshGamesCaptcha: null,
+  pickerModalOpen: false,
 };
 
 const uiSlice = createSlice({
@@ -33,6 +35,12 @@ const uiSlice = createSlice({
     setRefreshGamesCaptcha: (state, action: PayloadAction<string | null>) => {
       state.refreshGamesCaptcha = action.payload;
     },
+    showPickerModal: (state) => {
+      state.pickerModalOpen = true;
+    },
+    hidePickerModal: (state) => {
+      state.pickerModalOpen = false;
+    },
   },
 });
 
@@ -42,6 +50,8 @@ export const {
   setShouldShowOutputPanel,
   setQueryCaptcha,
   setRefreshGamesCaptcha,
+  showPickerModal,
+  hidePickerModal,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

@@ -8,7 +8,7 @@ export default function AddGamesPage() {
       <Head>
         <title>Adding games - DataHarvest</title>
       </Head>
-      <div className="w-full p-8">
+      <div className="flex flex-col items-start p-4 lg:p-8">
         <AddGamesDescription />
         <AddGamesForm />
       </div>

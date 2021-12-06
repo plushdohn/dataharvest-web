@@ -1,6 +1,6 @@
 export default function OutputStartingScreen() {
   return (
-    <div className="border-2 border-gray-800 border-dashed rounded flex flex-col justify-center items-center w-full p-32 mb-2">
+    <div className="border-2 border-gray-800 border-dashed rounded flex flex-col justify-center items-center w-full p-16 2xl:p-32 mb-2">
       <span className="font-semibold text-white text-center">
         Nothing to see yet
       </span>

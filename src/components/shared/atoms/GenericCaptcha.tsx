@@ -24,6 +24,7 @@ const GenericCaptcha = forwardRef(function Captcha(
         theme="dark"
         onExpired={handleExpire}
         ref={ref}
+        size="compact"
       />
     </div>
   );

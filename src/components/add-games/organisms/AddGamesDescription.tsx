@@ -1,6 +1,6 @@
 export default function AddGamesDescription() {
   return (
-    <div className="w-full flex flex-col">
+    <div className="flex flex-col max-w-lg">
       <span className="text-white font-semibold">
         Adding games to our database
       </span>

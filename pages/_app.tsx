@@ -8,7 +8,7 @@ import NavBar from "@/src/components/shared/organisms/NavBar";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
-      <div className="w-full h-screen bg-gray-900 flex">
+      <div className="w-screen h-screen bg-gray-900 flex overflow-hidden">
         <NavBar />
         <Component {...pageProps} />
       </div>

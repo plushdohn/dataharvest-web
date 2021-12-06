@@ -8,7 +8,7 @@ module.exports = {
     extend: {
       colors: {
         gray: colors.trueGray,
-        alphagray: "#181818A0",
+        alphagray: "#181818CC",
       },
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],

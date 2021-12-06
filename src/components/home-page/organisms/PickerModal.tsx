@@ -1,4 +1,4 @@
-import PickerPanelCategoryContainer from "../atoms/PickerPanelCategoryContainer";
+import PickerModalClosingButton from "../molecules/PickerModalClosingButton";
 import PickerPanelFiltersCategory from "../molecules/PickerPanelFiltersCategory";
 import PickerPanelGroupsCategory from "../molecules/PickerPanelGroupsCategory";
 import PickerPanelOperationsCategory from "../molecules/PickerPanelOperationsCategory";
@@ -6,9 +6,10 @@ import PickerPanelSortsCategory from "../molecules/PickerPanelSortsCategory";
 import PickerPanelStartersCategory from "../molecules/PickerPanelStartersCategory";
 import PickerPanelSubjectsCategory from "../molecules/PickerPanelSubjectsCategory";
 
-export default function PickerPanel() {
+export default function PickerModal() {
   return (
-    <div className="flex-shrink-1 2xl:flex-shrink-0 border-r border-gray-800 overflow-y-auto p-4 hidden lg:flex flex-col">
+    <div className="absolute w-full h-full flex flex-col bg-gray-900 p-4 overflow-y-scroll">
+      <PickerModalClosingButton />
       <PickerPanelStartersCategory />
       <PickerPanelFiltersCategory />
       <PickerPanelSubjectsCategory />

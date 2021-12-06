@@ -4,7 +4,7 @@ import NavBarLogo from "../molecules/NavBarLogo";
 
 export default function NavBar() {
   return (
-    <div className="w-20 flex flex-col items-center p-2 border-r border-gray-800">
+    <div className="w-16 flex flex-col items-center border-r border-gray-800">
       <NavBarLogo />
       <div className="pt-2">
         <NavBarAddGamesButton />

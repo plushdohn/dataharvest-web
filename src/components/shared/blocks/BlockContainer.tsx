@@ -71,11 +71,9 @@ export default function BlockContainer(props: {
 
   return (
     <div
-      className={`min-w-0 relative table select-none ${
-        topIndent ? "-mt-1" : ""
-      } ${props.className ? props.className : ""} ${
-        props.disabled ? "cursor-not-allowed" : "cursor-pointer"
-      }`}
+      className={`select-none ${topIndent ? "-mt-1" : ""} ${
+        props.className ? props.className : ""
+      } ${props.disabled ? "cursor-not-allowed" : "cursor-pointer"}`}
       onClick={handleClick}
       tabIndex={0}
     >
@@ -83,10 +81,11 @@ export default function BlockContainer(props: {
       <div
         className={`bg-gray-800 text-sm ${
           props.disabled ? "text-gray-500" : "text-white"
-        } p-2 rounded-r flex-shrink-0 flex items-center whitespace-nowrap`}
+        } p-2 rounded-r flex-shrink-0 flex items-center`}
       >
+        {" "}
         <div className={`${bgColor} w-2 h-2 rounded-full inline-block mr-2`} />
-        <div className="flex items-center">{props.children}</div>
+        <div className="flex items-center flex-wrap">{props.children}</div>
       </div>
       {bottomIndent && <BottomBlockIndent />}
     </div>

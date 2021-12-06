@@ -6,7 +6,7 @@ export default function NavBarGenericLinkContainer(props: {
 }) {
   return (
     <Link href={props.href}>
-      <a className="py-2 mt-2 w-16 hover:bg-gray-800 rounded flex flex-col items-center">
+      <a className="mt-2 w-16 hover:bg-gray-800 py-2 flex flex-col items-center">
         {props.children}
       </a>
     </Link>

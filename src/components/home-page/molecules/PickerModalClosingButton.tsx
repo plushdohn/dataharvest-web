@@ -1,0 +1,22 @@
+import { hidePickerModal } from "@/src/store/uiReducer";
+import { useDispatch } from "react-redux";
+
+export default function PickerModalClosingButton() {
+  const dispatch = useDispatch();
+
+  function handleClick() {
+    dispatch(hidePickerModal());
+  }
+
+  return (
+    <button className="mb-4 self-end" onClick={handleClick}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        className="w-8 fill-current text-gray-500"
+      >
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+      </svg>
+    </button>
+  );
+}
