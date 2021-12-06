@@ -1,4 +1,7 @@
+import { RootState } from "@/src/store";
+import { hidePickerModal } from "@/src/store/uiReducer";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BlockKind } from "shared/types";
 
 function getAttributesFromBlockKind(kind: BlockKind) {
@@ -59,6 +62,12 @@ export default function BlockContainer(props: {
   className?: string;
   disabled?: boolean;
 }) {
+  const dispatch = useDispatch();
+
+  const pickerModalOpen = useSelector(
+    (state: RootState) => state.ui.pickerModalOpen
+  );
+
   const [bgColor, topIndent, bottomIndent] = getAttributesFromBlockKind(
     props.kind
   );
@@ -66,6 +75,10 @@ export default function BlockContainer(props: {
   function handleClick() {
     if (!props.disabled && props.onClick) {
       props.onClick();
+
+      // Close any open picker modal
+      // TODO: Find a cleaner way to close the picker modal when an item is clicked
+      if (pickerModalOpen) dispatch(hidePickerModal());
     }
   }
 

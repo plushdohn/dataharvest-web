@@ -1,11 +1,17 @@
-import { showPickerModal } from "@/src/store/uiReducer";
-import { useDispatch } from "react-redux";
+import { RootState } from "@/src/store";
+import { hidePickerModal, showPickerModal } from "@/src/store/uiReducer";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function QueryCanvasAddBlocksButton() {
   const dispatch = useDispatch();
 
+  const pickerModalOpen = useSelector(
+    (state: RootState) => state.ui.pickerModalOpen
+  );
+
   function handleClick() {
-    dispatch(showPickerModal());
+    if (pickerModalOpen) dispatch(hidePickerModal());
+    else dispatch(showPickerModal());
   }
 
   return (
@@ -13,7 +19,7 @@ export default function QueryCanvasAddBlocksButton() {
       className="lg:hidden flex items-center justify-center py-1.5 hover:bg-gray-700 bg-gray-800 rounded mt-4 w-full text-sm text-white"
       onClick={handleClick}
     >
-      <span>Add Block</span>
+      <span>Add Blocks</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"

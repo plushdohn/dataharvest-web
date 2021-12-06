@@ -1,3 +1,7 @@
+import { RootState } from "@/src/store";
+import { hidePickerModal } from "@/src/store/uiReducer";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import PickerModalClosingButton from "../molecules/PickerModalClosingButton";
 import PickerPanelFiltersCategory from "../molecules/PickerPanelFiltersCategory";
 import PickerPanelGroupsCategory from "../molecules/PickerPanelGroupsCategory";
@@ -8,7 +12,7 @@ import PickerPanelSubjectsCategory from "../molecules/PickerPanelSubjectsCategor
 
 export default function PickerModal() {
   return (
-    <div className="absolute w-full h-full flex flex-col bg-gray-900 p-4 overflow-y-scroll">
+    <div className="absolute w-full h-full flex flex-col p-4 overflow-y-scroll bg-gray-900">
       <PickerModalClosingButton />
       <PickerPanelStartersCategory />
       <PickerPanelFiltersCategory />
