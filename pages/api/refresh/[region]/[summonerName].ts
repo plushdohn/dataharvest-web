@@ -4,7 +4,7 @@ import getMatchHistoryFromPlatformAndSummonerName, {
   PLATFORMS,
 } from "server/riot";
 import { Platform } from "server/types";
-import verifyCaptcha from "utils/captcha";
+import verifyCaptcha from "server/captcha";
 
 export default async function handler(
   req: NextApiRequest,

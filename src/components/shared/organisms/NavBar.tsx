@@ -1,4 +1,4 @@
-import NavBarAddGamesButton from "../molecules/NavBarAddGamesButton";
+import NavBarAddGamesButton from "../molecules/NavBarAddGamesLink";
 import NavBarGuideLink from "../molecules/NavBarGuideLink";
 import NavBarLogo from "../molecules/NavBarLogo";
 

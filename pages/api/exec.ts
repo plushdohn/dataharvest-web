@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import verifyCaptcha from "utils/captcha";
+import verifyCaptcha from "server/captcha";
 import { connectToMongoInstance } from "../../utils/mongo";
 import { parse } from "../../utils/queryParser";
 
