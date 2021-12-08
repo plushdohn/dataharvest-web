@@ -5,7 +5,7 @@ export default function PickerPanelCategoryContainer(props: {
   children: React.ReactChild | React.ReactChild[];
 }) {
   return (
-    <div className="mb-8">
+    <div className="mb-8 flex flex-col items-start justify-start">
       <PickerPanelCategoryTitle>{props.title}</PickerPanelCategoryTitle>
       {props.children}
     </div>

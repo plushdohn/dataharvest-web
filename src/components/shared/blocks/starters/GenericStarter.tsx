@@ -40,7 +40,7 @@ export function StarterPicker<Type>(props: {
     <BlockContainer
       kind={BlockKind.Starter}
       onClick={handleClick}
-      className="my-4"
+      className="mb-4"
     >
       {ASSOCIATIONS.starters[props.id].component({
         args,
