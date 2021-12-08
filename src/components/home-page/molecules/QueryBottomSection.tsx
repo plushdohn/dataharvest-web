@@ -39,13 +39,16 @@ export default function QueryBottomSection() {
         captcha,
       })
     );
+
+    setCaptcha(null);
   }
 
   useEffect(() => {
     if (!loading) {
-      if (captchaRef.current !== null)
+      if (captchaRef.current !== null) {
         // @ts-ignore
         captchaRef.current.reset();
+      }
     }
   }, [loading]);
 
