@@ -1,7 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import createRateLimiter from "server/rateLimiter";
 import verifyCaptcha from "utils/captcha";
 import { connectToMongoInstance } from "../../utils/mongo";
 import { parse } from "../../utils/queryParser";
+
+const rateLimiter = createRateLimiter({
+  uniqueTokenPerInterval: 300,
+  interval: 10,
+});
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,7 +15,7 @@ export default async function handler(
 ) {
   // Only allow POST requests
   if (req.method !== "POST") {
-    return res.status(400).json({ message: "Only POST requests are allowed." });
+    return res.status(400).send("Only POST requests are allowed.");
   }
 
   // Verify captcha
@@ -18,7 +24,14 @@ export default async function handler(
   try {
     await verifyCaptcha(captcha);
   } catch (err) {
-    return res.status(403).json({ message: "Invalid captcha:" + err });
+    return res.status(403).send("Invalid captcha.");
+  }
+
+  // Verify rate limit
+  const allowed = await rateLimiter.checkRequest(req);
+
+  if (!allowed) {
+    return res.status(429).send("Too many queries.");
   }
 
   // Try to parse query
@@ -26,9 +39,7 @@ export default async function handler(
   try {
     parsedQuery = parse(req.body.query);
   } catch (err) {
-    return res
-      .status(400)
-      .json({ message: "The requested query was invalid:" + err });
+    return res.status(400).send("The requested query was invalid:" + err);
   }
 
   // Connect to the database
@@ -38,7 +49,7 @@ export default async function handler(
   } catch (err) {
     return res
       .status(500)
-      .json({ message: "Couldn't establish connection to database:" + err });
+      .send("Couldn't establish connection to database:" + err);
   }
 
   try {
@@ -49,8 +60,6 @@ export default async function handler(
 
     return res.status(200).json(games);
   } catch (err) {
-    return res
-      .status(500)
-      .json({ message: "Error while querying for games:" + err });
+    return res.status(500).send("Error while querying for games:" + err);
   }
 }
