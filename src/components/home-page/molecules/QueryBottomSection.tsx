@@ -3,7 +3,6 @@ import { executeQuery } from "@/src/store/queryApiReducer";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import GenericCaptcha from "../../shared/atoms/GenericCaptcha";
-import OutputLegalLinks from "../atoms/LegalLinks";
 import QueryCanvasClearButton from "../atoms/QueryCanvasClearButton";
 import QueryCanvasRunButton from "../atoms/QueryCanvasRunButton";
 

@@ -11,6 +11,7 @@
     "@reduxjs/toolkit": "^1.6.2",
     "await-to-js": "^3.0.0",
     "axios": "^0.24.0",
+    "base2048": "^2.0.2",
     "lodash": "^4.17.21",
     "lru-cache": "^6.0.0",
     "mongodb": "^4.2.0",
