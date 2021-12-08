@@ -1,13 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import createRateLimiter from "server/rateLimiter";
 import verifyCaptcha from "utils/captcha";
 import { connectToMongoInstance } from "../../utils/mongo";
 import { parse } from "../../utils/queryParser";
-
-const rateLimiter = createRateLimiter({
-  uniqueTokenPerInterval: 300,
-  interval: 10,
-});
 
 export default async function handler(
   req: NextApiRequest,
@@ -25,13 +19,6 @@ export default async function handler(
     await verifyCaptcha(captcha);
   } catch (err) {
     return res.status(403).send("Invalid captcha.");
-  }
-
-  // Verify rate limit
-  const allowed = await rateLimiter.checkRequest(req);
-
-  if (!allowed) {
-    return res.status(429).send("Too many queries.");
   }
 
   // Try to parse query
