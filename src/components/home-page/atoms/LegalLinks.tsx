@@ -10,6 +10,10 @@ export default function LegalLinks() {
       <Link href="/terms">
         <a className="focus:underline hover:underline">Terms</a>
       </Link>
+      <span>{" - "}</span>
+      <Link href="/contact">
+        <a className="focus:underline hover:underline">Contact</a>
+      </Link>
     </div>
   );
 }
