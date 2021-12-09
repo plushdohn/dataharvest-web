@@ -90,7 +90,7 @@ export const ASSOCIATIONS: {
     },
     [StarterId.Patch]: {
       component: PatchStarter,
-      initialState: "11.23",
+      initialState: "11.24",
     },
   },
   filters: {
