@@ -109,9 +109,6 @@ function processSingleOperation(id: OperationId): [Object, Object?] {
               $cond: ["$participants.win", 1, 0],
             },
           },
-          [OperationField.GamesCount]: {
-            $sum: 1,
-          },
         },
         {
           [OperationField.WinRate]: {
@@ -119,6 +116,34 @@ function processSingleOperation(id: OperationId): [Object, Object?] {
               { $multiply: [`$${OperationField.Wins}`, 100] },
               `$${OperationField.GamesCount}`,
             ],
+          },
+        },
+      ];
+    case OperationId.CsPerMinute:
+      return [
+        {
+          [OperationField.CsPerMinute]: {
+            $avg: {
+              $divide: [
+                "$participants.totalMinionsKilled",
+                {
+                  $divide: [
+                    {
+                      $divide: [
+                        {
+                          $subtract: [
+                            "$gameEndTimestamp",
+                            "$gameStartTimestamp",
+                          ],
+                        },
+                        1000,
+                      ],
+                    },
+                    60,
+                  ],
+                },
+              ],
+            },
           },
         },
       ];

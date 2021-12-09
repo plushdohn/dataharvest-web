@@ -15,7 +15,7 @@ export default function TextInputForBlocks(props: {
       onChange={props.onChange}
       onClick={clickHandler}
       type="text"
-      className={`ml-2 rounded text-black p-1 w-16 ${props.className ?? ""}`}
+      className={`rounded text-black p-1 w-16 text-sm ${props.className ?? ""}`}
     />
   );
 }

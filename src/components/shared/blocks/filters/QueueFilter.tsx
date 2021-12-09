@@ -10,7 +10,7 @@ export default function QueueFilter(props: {
 
   return (
     <>
-      <span>Only games from queue</span>
+      <span>Only games from queue&nbsp;</span>
       <SelectInputForBlocks
         value={props.args.toString()}
         onChange={handleChange}

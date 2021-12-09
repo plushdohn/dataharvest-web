@@ -11,7 +11,7 @@ export default function SummonerSubject(props: {
 
   return (
     <>
-      <span>Regarding summoner</span>
+      <span>Regarding summoner&nbsp;</span>
       <TextInputForBlocks value={props.args} onChange={handleChange} />
     </>
   );

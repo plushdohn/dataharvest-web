@@ -46,5 +46,9 @@ export default function sortHandler(id: OperationId, asc: boolean): Object {
       return {
         [OperationField.WinRate]: asc ? 1 : -1,
       };
+    case OperationId.CsPerMinute:
+      return {
+        [OperationField.CsPerMinute]: asc ? 1 : -1,
+      };
   }
 }

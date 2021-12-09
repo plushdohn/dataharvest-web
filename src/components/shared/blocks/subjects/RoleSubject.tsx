@@ -11,7 +11,7 @@ export default function RoleSubject(props: {
 
   return (
     <>
-      <span>Regarding role</span>
+      <span>Regarding role&nbsp;</span>
       <SelectInputForBlocks onChange={handleChange} value={props.args}>
         <option value="TOP">Top</option>
         <option value="JUNGLE">Jungle</option>

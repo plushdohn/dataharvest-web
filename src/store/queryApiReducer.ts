@@ -12,6 +12,7 @@ export const executeQuery = createAsyncThunk(
   "queryApi",
   async (params: { query: Query; captcha: string }) => {
     const res = await runQuery(params.query, params.captcha);
+
     return res.data;
   }
 );
@@ -33,7 +34,7 @@ const queryApiSlice = createSlice({
     builder.addCase(executeQuery.rejected, (state, action) => {
       delete state.data;
       state.loading = false;
-      state.error = JSON.stringify(action.payload);
+      state.error = action.error.message;
     });
     builder.addCase(executeQuery.pending, (state) => {
       state.loading = true;

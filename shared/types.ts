@@ -21,6 +21,7 @@ export enum OperationField {
   Wins = "wins",
   WinRate = "winRate",
   GamesCount = "gamesCount",
+  CsPerMinute = "csPerMinute",
 }
 
 /*
@@ -31,12 +32,13 @@ export enum StarterId {
   All = "ALL",
 }
 export enum FilterId {
-  Summoner = "summoner",
-  Champion = "champion",
-  Region = "region",
-  ChampionWithMythic = "championWithMythic",
-  Queue = "queue",
-  SummonerInRole = "summonerInRole",
+  Summoner = "SUMMONER",
+  Champion = "CHAMPION",
+  Region = "REGION",
+  ChampionWithMythic = "CHAMPION_WITH_MYTHIC",
+  Queue = "QUEUE",
+  SummonerInRole = "SUMMONER_IN_ROLE",
+  SummonerInTeam = "SUMMONER_IN_TEAM",
 }
 export enum SubjectId {
   Summoner = "SUMMONER",
@@ -62,6 +64,7 @@ export enum OperationId {
   AverageMagicDamageDealtToChampions = "AVERAGE_MAGIC_DAMAGE_DEALT_TO_CHAMPIONS",
   AverageDamageTaken = "AVERAGE_DAMAGE_TAKEN",
   WinRate = "WIN_RATE",
+  CsPerMinute = "CS_PER_MINUTE",
 }
 
 type SingleArg = string | number | boolean;

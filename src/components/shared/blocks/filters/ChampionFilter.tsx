@@ -15,7 +15,7 @@ export default function ChampionFilter(props: {
 
   return (
     <>
-      <span>Only games with champion</span>
+      <span>Only games with champion&nbsp;</span>
       <SelectInputForBlocks onChange={handleChange} value={props.args}>
         {Object.entries(ddragon.champions).map(([key, data]) => (
           <option value={key} key={key}>

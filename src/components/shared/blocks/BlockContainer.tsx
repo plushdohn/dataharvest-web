@@ -84,7 +84,7 @@ export default function BlockContainer(props: {
 
   return (
     <div
-      className={`select-none ${topIndent ? "-mt-1" : ""} ${
+      className={`select-none  ${topIndent ? "-mt-1" : ""} ${
         props.className ? props.className : ""
       } ${props.disabled ? "cursor-not-allowed" : "cursor-pointer"}`}
       onClick={handleClick}

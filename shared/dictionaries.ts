@@ -19,6 +19,7 @@ export const VALUES_DICTIONARY_EN: {
     "Average physical damage to champions",
   [OperationField.AverageMagicDamageDealtToChampions]:
     "Average magic damage to champions",
+  [OperationField.CsPerMinute]: "Average CS per minute",
 };
 
 export const ROLES_DICTIONARY_EN = new Map([

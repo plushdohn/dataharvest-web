@@ -15,7 +15,7 @@ export default function ChampionSubject(props: {
 
   return (
     <>
-      <span>Regarding champion</span>
+      <span>Regarding champion&nbsp;</span>
       <SelectInputForBlocks onChange={handleChange} value={props.args}>
         {Object.entries(ddragon.champions).map(([key, data]) => (
           <option value={key} key={key}>

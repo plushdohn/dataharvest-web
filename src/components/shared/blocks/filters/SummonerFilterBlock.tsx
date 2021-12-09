@@ -11,7 +11,7 @@ export default function SummonerFilter(props: {
 
   return (
     <>
-      <span>Only games with summoner</span>
+      <span>Only games with summoner&nbsp;</span>
       <TextInputForBlocks value={props.args} onChange={handleChange} />
     </>
   );

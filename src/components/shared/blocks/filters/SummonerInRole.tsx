@@ -16,13 +16,13 @@ export default function SummonerInRoleFilter(props: {
 
   return (
     <>
-      <span>Only games where summoner</span>
+      <span>Only games where summoner&nbsp;</span>
       <TextInputForBlocks
         onChange={handleSummonerChange}
         value={props.args[0]}
-        className="mr-2"
+        className="mr-1"
       />
-      <span>is playing role</span>
+      <span>is playing role&nbsp;</span>
       <SelectInputForBlocks onChange={handleRoleChange} value={props.args[1]}>
         <option value="TOP">Top</option>
         <option value="JUNGLE">Jungle</option>

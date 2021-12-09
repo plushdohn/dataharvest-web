@@ -10,7 +10,7 @@ export default function PatchStarter(props: {
 
   return (
     <>
-      <span>Use games from patch</span>
+      <span>Use games from patch&nbsp;</span>
       <SelectInputForBlocks onChange={handleChange} value={props.args}>
         <option value="11.21">11.21</option>
         <option value="11.22">11.22</option>

@@ -57,5 +57,14 @@ function processFilter(id: FilterId, args: any): Object {
           },
         },
       };
+    case FilterId.SummonerInTeam:
+      return {
+        participants: {
+          $elemMatch: {
+            summonerName: args[0],
+            teamId: args[1],
+          },
+        },
+      };
   }
 }

@@ -11,12 +11,14 @@ import QueueFilter from "./filters/QueueFilter";
 import RegionFilter from "./filters/RegionFilterBlock";
 import SummonerFilter from "./filters/SummonerFilterBlock";
 import SummonerInRoleFilter from "./filters/SummonerInRole";
+import SummonerInTeamFilter from "./filters/SummonerInTeamFilter";
 import ChampionGroup from "./groups/ChampionGroup";
 import KeystoneGroup from "./groups/KeystoneGroup";
 import MythicGroup from "./groups/MythicGroup";
 import RoleGroup from "./groups/RoleGroupBlock";
 import SummonerGroup from "./groups/SummonerGroup";
 import AverageCSOp from "./operations/AverageCSOp";
+import AverageCsPerMinuteOp from "./operations/AverageCsPerMinuteOp";
 import AverageDamageDealtOp from "./operations/AverageDamageDealtOp";
 import AverageDamageDealtToChampionssOp from "./operations/AverageDamageDealtToChampionsOp";
 import AverageDamageDealtToStructuresOp from "./operations/AverageDamageDealtToStructuresOp";
@@ -27,6 +29,7 @@ import AverageMagicDamageToChampionsOp from "./operations/AverageMagicDamageToCh
 import AveragePhysicalDamageToChampionsOp from "./operations/AveragePhysicalDamageToChampionsOp";
 import AverageVisionScoreOp from "./operations/AverageVisionScoreOp";
 import WinRateOp from "./operations/WinRateOp";
+import AverageCsPerMinuteSort from "./sorts/AverageCsPerMinuteSort";
 import AverageCSSort from "./sorts/AverageCSSort";
 import AverageDamageDealtSort from "./sorts/AverageDamageDealtSort";
 import AverageDamageDealtToChampionsSort from "./sorts/AverageDamageDealtToChampionsSort";
@@ -115,6 +118,10 @@ export const ASSOCIATIONS: {
       component: SummonerInRoleFilter,
       initialState: ["Babus", "TOP"],
     },
+    [FilterId.SummonerInTeam]: {
+      component: SummonerInTeamFilter,
+      initialState: ["Brizz94", 100],
+    },
   },
   subjects: {
     [SubjectId.Champion]: {
@@ -168,6 +175,7 @@ export const ASSOCIATIONS: {
       AveragePhysicalDamageToChampionsOp,
     [OperationId.AverageVisionScore]: AverageVisionScoreOp,
     [OperationId.WinRate]: WinRateOp,
+    [OperationId.CsPerMinute]: AverageCsPerMinuteOp,
   },
   sorts: {
     [OperationId.AverageCS]: {
@@ -212,6 +220,10 @@ export const ASSOCIATIONS: {
     },
     [OperationId.WinRate]: {
       component: WinRateSort,
+      initialState: false,
+    },
+    [OperationId.CsPerMinute]: {
+      component: AverageCsPerMinuteSort,
       initialState: false,
     },
   },

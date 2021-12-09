@@ -19,11 +19,12 @@ export default function ChampionWithMythicFilter(props: {
   }
 
   return (
-    <div>
-      <span>Only games where champion</span>
+    <>
+      <span>Only games where champion&nbsp;</span>
       <SelectInputForBlocks
         onChange={handleChampionChange}
         value={props.args[0]}
+        className="mr-1"
       >
         {Object.entries(ddragon.champions).map(([key, data]) => (
           <option value={key} key={key}>
@@ -31,19 +32,17 @@ export default function ChampionWithMythicFilter(props: {
           </option>
         ))}
       </SelectInputForBlocks>
-      <div className="mt-2">
-        <span>has mythic</span>
-        <SelectInputForBlocks
-          onChange={handleMythicChange}
-          value={props.args[1].toString()}
-        >
-          {ddragon.mythics.map((mythic) => (
-            <option value={mythic} key={mythic}>
-              {mythic}
-            </option>
-          ))}
-        </SelectInputForBlocks>
-      </div>
-    </div>
+      <span>has mythic&nbsp;</span>
+      <SelectInputForBlocks
+        onChange={handleMythicChange}
+        value={props.args[1].toString()}
+      >
+        {ddragon.mythics.map((mythic) => (
+          <option value={mythic} key={mythic}>
+            {mythic}
+          </option>
+        ))}
+      </SelectInputForBlocks>
+    </>
   );
 }

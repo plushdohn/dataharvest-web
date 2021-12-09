@@ -1,6 +1,6 @@
 import { Document } from "bson";
 import filterHandler from "./handlers/filters";
-import { ClientHints, Query } from "../shared/types";
+import { ClientHints, OperationField, Query } from "../shared/types";
 import subjectHandler from "./handlers/subject";
 import groupHandler from "./handlers/group";
 import operationsHandler from "./handlers/operations";
@@ -62,6 +62,14 @@ export function parse(source: Query): Document[] {
   if (operations.length === 0) {
     throw new Error("At least one operation is required.");
   }
+
+  // Count games first
+  Object.assign(groupExpr, {
+    [OperationField.GamesCount]: {
+      $sum: 1,
+    },
+  });
+
   const [opFirstStage, opSecondStage] = operationsHandler(operations);
   Object.assign(groupExpr, opFirstStage);
 

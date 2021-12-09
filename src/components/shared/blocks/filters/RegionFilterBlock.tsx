@@ -11,7 +11,7 @@ export default function RegionFilter(props: {
 
   return (
     <>
-      <span>Only games from region</span>
+      <span>Only games from region&nbsp;</span>
       <SelectInputForBlocks onChange={handleChange} value={props.args}>
         <option value="EUW1">EUW</option>
         <option value="KR">KR</option>

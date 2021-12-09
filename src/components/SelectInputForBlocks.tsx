@@ -4,7 +4,7 @@ export default function SelectInputForBlocks(props: {
   children: React.ReactChild | React.ReactChild[];
   className?: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => any;
-  value: string;
+  value: string | number;
 }) {
   function handleClick(e: React.MouseEvent<HTMLSelectElement>) {
     e.stopPropagation();
@@ -12,7 +12,7 @@ export default function SelectInputForBlocks(props: {
 
   return (
     <select
-      className={`p-1 rounded text-black ml-2 ${
+      className={`p-1 rounded text-black my-0.5 w-24 ${
         props.className ? props.className : ""
       }`}
       onClick={handleClick}
