@@ -35,7 +35,8 @@ export enum FilterId {
   Champion = "champion",
   Region = "region",
   ChampionWithMythic = "championWithMythic",
-  Queue = "Queue",
+  Queue = "queue",
+  SummonerInRole = "summonerInRole",
 }
 export enum SubjectId {
   Summoner = "SUMMONER",

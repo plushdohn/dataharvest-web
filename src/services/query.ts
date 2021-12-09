@@ -1,4 +1,4 @@
-import { Query, ServerResponse } from "shared/types";
+import { Query } from "shared/types";
 import axios from "axios";
 
 export function runQuery(query: Query, captcha: string) {

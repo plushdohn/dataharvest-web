@@ -10,6 +10,7 @@ import ChampionWithMythicFilter from "./filters/ChampionWithMythicFilter";
 import QueueFilter from "./filters/QueueFilter";
 import RegionFilter from "./filters/RegionFilterBlock";
 import SummonerFilter from "./filters/SummonerFilterBlock";
+import SummonerInRoleFilter from "./filters/SummonerInRole";
 import ChampionGroup from "./groups/ChampionGroup";
 import KeystoneGroup from "./groups/KeystoneGroup";
 import MythicGroup from "./groups/MythicGroup";
@@ -109,6 +110,10 @@ export const ASSOCIATIONS: {
     [FilterId.ChampionWithMythic]: {
       component: ChampionWithMythicFilter,
       initialState: ["Aatrox", "Everfrost"],
+    },
+    [FilterId.SummonerInRole]: {
+      component: SummonerInRoleFilter,
+      initialState: ["Babus", "TOP"],
     },
   },
   subjects: {

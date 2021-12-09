@@ -1,4 +1,3 @@
-import { Filter } from "mongodb";
 import { FilterId } from "../../shared/types";
 
 /**
@@ -46,6 +45,15 @@ function processFilter(id: FilterId, args: any): Object {
           $elemMatch: {
             championName: args[0],
             mythic: args[1],
+          },
+        },
+      };
+    case FilterId.SummonerInRole:
+      return {
+        participants: {
+          $elemMatch: {
+            summonerName: args[0],
+            teamPosition: args[1],
           },
         },
       };
