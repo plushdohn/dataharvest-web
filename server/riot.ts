@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ParsedMatch, parseRiotMatch, RiotMatch } from "utils/matchParser";
+import { ParsedMatch, parseRiotMatch, RiotMatch } from "server/matchParser";
 import { Platform, PlatformsDictionary, RegionalEndpoint } from "./types";
 
 const N_GAMES_PER_PLAYER = 30;

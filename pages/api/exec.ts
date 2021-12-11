@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import verifyCaptcha from "server/captcha";
-import { connectToMongoInstance } from "../../utils/mongo";
-import { parse } from "../../utils/queryParser";
+import { connectToMongoInstance } from "../../server/mongo";
+import { parse } from "../../server/queryParser";
 
 export default async function handler(
   req: NextApiRequest,
