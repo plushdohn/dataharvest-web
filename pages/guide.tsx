@@ -33,7 +33,7 @@ export default function GuidePage() {
             Clicking blocks on the left panel will add them to the current
             query; clicking blocks on the current query will remove them.
             Results are automatically limited to 10 by design (it will become an
-            option in the future). You can run a query once every 10 seconds.
+            option in the future).
           </GuideParagraph>
           <div className="mt-8 flex flex-col">
             <GuideSectionTitle>Building queries</GuideSectionTitle>
@@ -252,8 +252,6 @@ export default function GuidePage() {
               queries that emcompass the whole database for everyone. If there
               is demand we might give API keys in the future for use-cases that
               need more freedom. <br /> <br />
-              There is also a 10 second IP-based timer to queries to prevent
-              abuse and a minute-long timer when you add games.
             </GuideParagraph>
           </div>
         </div>
