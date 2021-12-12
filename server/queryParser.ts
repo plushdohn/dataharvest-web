@@ -26,6 +26,8 @@ export function parse(source: Query): Document[] {
     });
   }
 
+  // Get a clean count of games after filtering before they get polluted by other stages
+
   // Unwind in any case
   // TODO: Check if unwind is actually needed
   output.push({

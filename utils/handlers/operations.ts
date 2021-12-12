@@ -57,7 +57,12 @@ function processSingleOperation(id: OperationId): [Object, Object?] {
       return [
         {
           [OperationField.AverageCS]: {
-            $avg: "$participants.totalMinionsKilled",
+            $avg: {
+              $sum: [
+                "$participants.totalMinionsKilled",
+                "$participants.neutralMinionsKilled",
+              ],
+            },
           },
         },
       ];
@@ -125,7 +130,12 @@ function processSingleOperation(id: OperationId): [Object, Object?] {
           [OperationField.CsPerMinute]: {
             $avg: {
               $divide: [
-                "$participants.totalMinionsKilled",
+                {
+                  $sum: [
+                    "$participants.totalMinionsKilled",
+                    "$participants.neutralMinionsKilled",
+                  ],
+                },
                 {
                   $divide: [
                     {
