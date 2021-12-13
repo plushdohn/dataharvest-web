@@ -16,7 +16,7 @@ export default function OutputSingleResult(props: {
           <img src={props.imageUrl} className="w-7 h-7 rounded-full mr-3" />
         )}
         <span className="text-white font-semibold">
-          {props.name} ({props.values.gamesCount} games)
+          {props.name} (samples: {props.values.gamesCount})
         </span>
       </div>
       <div className="p-3 pb-0">
