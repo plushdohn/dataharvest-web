@@ -132,7 +132,7 @@ export type RiotMatch = {
   info: {
     platformId: RiotPlatformid;
     gameVersion: string;
-    queueId: string;
+    queueId: number;
     gameStartTimestamp: number;
     gameEndTimestamp: number;
     participants: RiotParticipant[];
@@ -255,7 +255,7 @@ export type ParsedMatch = {
   platformId: string;
   dataVersion: string;
   patch: string;
-  queueId: string;
+  queueId: number;
   gameStartTimestamp: number;
   gameEndTimestamp: number;
   participants: ParsedParticipant[];

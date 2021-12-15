@@ -17,8 +17,6 @@ export default function QueueFilter(props: {
       >
         <option value="420">Ranked Solo/Duo</option>
         <option value="440">Ranked Flex</option>
-        <option value="430">Blind pick</option>
-        <option value="400">Draft pick</option>
       </SelectInputForBlocks>
     </>
   );

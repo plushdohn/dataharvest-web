@@ -4,8 +4,6 @@ import { FilterId } from "../../shared/types";
  * From a Filters object, returns an object
  * that should be given to a MongoDB $match block.
  *
- * Throws an error in case an unsupported filter was given.
- *
  * @param {Filters} filters
  * @returns {any}
  */
@@ -63,6 +61,34 @@ function processFilter(id: FilterId, args: any): Object {
           $elemMatch: {
             summonerName: args[0],
             teamId: args[1],
+          },
+        },
+      };
+    case FilterId.ChampionWithRune:
+      return {
+        participants: {
+          $elemMatch: {
+            championName: args[0],
+            $or: [
+              {
+                "runes.primary.keystone.id": args[1],
+              },
+              {
+                "runes.primary.rune1.id": args[1],
+              },
+              {
+                "runes.primary.rune2.id": args[1],
+              },
+              {
+                "runes.primary.rune3.id": args[1],
+              },
+              {
+                "runes.secondary.rune1.id": args[1],
+              },
+              {
+                "runes.secondary.rune2.id": args[1],
+              },
+            ],
           },
         },
       };

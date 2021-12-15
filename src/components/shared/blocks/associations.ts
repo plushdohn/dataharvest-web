@@ -7,6 +7,7 @@ import {
 } from "shared/types";
 import ChampionFilter from "./filters/ChampionFilter";
 import ChampionWithMythicFilter from "./filters/ChampionWithMythicFilter";
+import ChampionWithRuneFilter from "./filters/ChampionWithRuneFilter";
 import QueueFilter from "./filters/QueueFilter";
 import RegionFilter from "./filters/RegionFilterBlock";
 import SummonerFilter from "./filters/SummonerFilterBlock";
@@ -121,6 +122,10 @@ export const ASSOCIATIONS: {
     [FilterId.SummonerInTeam]: {
       component: SummonerInTeamFilter,
       initialState: ["Brizz94", 100],
+    },
+    [FilterId.ChampionWithRune]: {
+      component: ChampionWithRuneFilter,
+      initialState: ["Zed", 8005],
     },
   },
   subjects: {

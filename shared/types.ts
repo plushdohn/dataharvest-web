@@ -39,6 +39,7 @@ export enum FilterId {
   Queue = "QUEUE",
   SummonerInRole = "SUMMONER_IN_ROLE",
   SummonerInTeam = "SUMMONER_IN_TEAM",
+  ChampionWithRune = "CHAMPION_WITH_RUNE",
 }
 export enum SubjectId {
   Summoner = "SUMMONER",

@@ -1,11 +1,11 @@
 import { Document } from "bson";
-import filterHandler from "../utils/handlers/filters";
+import filterHandler from "./handlers/filters";
 import { ClientHints, OperationField, Query } from "../shared/types";
-import subjectHandler from "../utils/handlers/subject";
-import groupHandler from "../utils/handlers/group";
-import operationsHandler from "../utils/handlers/operations";
-import sortHandler from "../utils/handlers/sort";
-import starterHandler from "../utils/handlers/starts";
+import subjectHandler from "./handlers/subject";
+import groupHandler from "./handlers/group";
+import operationsHandler from "./handlers/operations";
+import sortHandler from "./handlers/sort";
+import starterHandler from "./handlers/starts";
 
 export function parse(source: Query): Document[] {
   const output: Document[] = [];
