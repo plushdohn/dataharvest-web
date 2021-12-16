@@ -1,4 +1,5 @@
 import NavBarAddGamesButton from "../molecules/NavBarAddGamesLink";
+import NavBarDonateLink from "../molecules/NavBarDonateLink";
 import NavBarGuideLink from "../molecules/NavBarGuideLink";
 import NavBarLogo from "../molecules/NavBarLogo";
 
@@ -9,6 +10,7 @@ export default function NavBar() {
       <div className="pt-2">
         <NavBarAddGamesButton />
         <NavBarGuideLink />
+        <NavBarDonateLink />
       </div>
     </div>
   );
