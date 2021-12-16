@@ -15,8 +15,6 @@ import PickerPanel from "@/src/components/home-page/organisms/PickerPanel";
 import OutputPanel from "@/src/components/home-page/organisms/OutputPanel";
 import PickerModal from "@/src/components/home-page/organisms/PickerModal";
 import { RootState } from "@/src/store";
-import { useRouter } from "next/router";
-import { decode } from "base2048";
 import WelcomeModal from "@/src/components/home-page/organisms/WelcomeModal";
 import { showWelcomeModal } from "@/src/store/uiReducer";
 
