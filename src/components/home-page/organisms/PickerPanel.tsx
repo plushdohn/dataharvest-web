@@ -8,7 +8,7 @@ import PickerPanelSubjectsCategory from "../molecules/PickerPanelSubjectsCategor
 
 export default function PickerPanel() {
   return (
-    <div className="flex-shrink-1 border-r border-gray-800 overflow-y-auto p-4 hidden lg:flex flex-col items-start">
+    <div className="flex-shrink-0 border-r border-gray-800 overflow-y-auto p-4 hidden lg:flex flex-col items-start">
       <PickerPanelStartersCategory />
       <PickerPanelFiltersCategory />
       <PickerPanelSubjectsCategory />

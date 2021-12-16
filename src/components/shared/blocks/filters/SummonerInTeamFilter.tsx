@@ -20,7 +20,7 @@ export default function SummonerInTeamFilter(props: {
         onChange={handleSummonerChange}
         value={props.args[0]}
       />
-      <span>&nbsp;is playing team color&nbsp; </span>
+      <span>&nbsp;is in team&nbsp;</span>
       <SelectInputForBlocks onChange={handleTeamChange} value={props.args[1]}>
         <option value={100}>BLUE</option>
         <option value={200}>RED</option>

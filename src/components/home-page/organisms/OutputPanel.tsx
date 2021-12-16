@@ -13,7 +13,7 @@ export default function OutputPanel() {
   const queryApi = useSelector((state: RootState) => state.queryApi);
 
   return (
-    <div className="w-full p-4 flex flex-col items-center border-t border-gray-800 lg:w-1/2 lg:border-l lg:overflow-y-auto">
+    <div className="w-full p-4 flex flex-col items-center border-t border-gray-800 2xl:w-1/2 lg:border-l lg:overflow-y-auto">
       {queryApi.loading ? (
         <OutputLoadingScreen />
       ) : queryApi.error ? (

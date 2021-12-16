@@ -34,8 +34,10 @@ function Home() {
         } lg:overflow-y-visible`}
       >
         <PickerPanel />
-        <QueryCanvas />
-        <OutputPanel />
+        <div className="flex 2xl:flex-row flex-col">
+          <QueryCanvas />
+          <OutputPanel />
+        </div>
         {pickerModalOpen && <PickerModal />}
       </div>
     </>
