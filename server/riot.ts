@@ -216,7 +216,7 @@ function getFlexQueueRankFromSummonerLeagueInfo(
   }[]
 ): number | null {
   const soloQueueInfo = leagueInfo.find(
-    (el) => el.queueType === "RANKED_TEAM_5x5"
+    (el) => el.queueType === "RANKED_FLEX_SR"
   );
 
   if (soloQueueInfo === undefined) {

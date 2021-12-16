@@ -37,7 +37,6 @@ async function getDatabase(): Promise<Db> {
   return client.db();
 }
 const MONGODB_URI = process.env.MONGODB_URI;
-const DB_NAME = process.env.DB_NAME;
 
 export async function connectToMongoInstance() {
   if (db) {
@@ -48,17 +47,13 @@ export async function connectToMongoInstance() {
     throw new Error("No MONGODB_URI environment variable was set.");
   }
 
-  if (!DB_NAME) {
-    throw new Error("No MONGOD_DB environment variable was set.");
-  }
-
   if (!client) {
     client = new MongoClient(MONGODB_URI);
 
     await client.connect();
   }
 
-  db = client.db(DB_NAME);
+  db = client.db();
 
   return db;
 }
