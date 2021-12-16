@@ -24,6 +24,7 @@ export default async function handler(
       return res.status(200).json({ addedGamesCount });
     } catch (err: any) {
       if (err.status === 404) {
+        console.log(err);
         return res.status(404).json({ message: "Summoner not found." });
       }
 

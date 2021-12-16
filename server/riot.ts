@@ -88,9 +88,9 @@ async function addAverageRankToMatchList(
   matches: ParsedMatch[]
 ): Promise<ParsedMatch[]> {
   const promises = matches.map(async (match) => {
-    const summonerLeagueInfo = await getLeagueInfoFromSummonerName(
+    const summonerLeagueInfo = await getLeagueInfoFromPuuid(
       getPlatfromFromRiotPlatform(match.platformId),
-      match.participants[0].summonerName
+      match.participants[0].puuid
     );
 
     return {
@@ -175,13 +175,13 @@ async function getPuuidFromPlatformAndSummonerName(
   return summonerInfo.puuid;
 }
 
-async function getSummonerIdFromPlatformAndSummonerName(
+async function getSummonerIdFromPuuid(
   platform: Platform,
-  summonerName: string
+  puuid: string
 ): Promise<string> {
   const summonerInfo = await makeRiotApiRequest<{ id: string }>(
     PLATFORMS[platform as Platform].urlValue,
-    `/lol/summoner/v4/summoners/by-name/${encodeURI(summonerName)}`
+    `/lol/summoner/v4/summoners/by-puuid/${puuid}`
   );
 
   return summonerInfo.id;
@@ -229,14 +229,8 @@ function getFlexQueueRankFromSummonerLeagueInfo(
   );
 }
 
-async function getLeagueInfoFromSummonerName(
-  platform: Platform,
-  summonerName: string
-) {
-  const summonerId = await getSummonerIdFromPlatformAndSummonerName(
-    platform,
-    summonerName
-  );
+async function getLeagueInfoFromPuuid(platform: Platform, puuid: string) {
+  const summonerId = await getSummonerIdFromPuuid(platform, puuid);
 
   const summonerLeagueInfo = await makeRiotApiRequest<
     [{ queueType: string; tier: Tier; rank: Rank }]
@@ -252,6 +246,8 @@ async function makeRiotApiRequest<T>(
   regionalUrl: string,
   endpoint: string
 ): Promise<T> {
+  const url = `https://${regionalUrl}.api.riotgames.com${endpoint}`;
+
   try {
     const res = await axios.get<T>(
       `https://${regionalUrl}.api.riotgames.com${endpoint}`,
@@ -264,6 +260,9 @@ async function makeRiotApiRequest<T>(
 
     return res.data;
   } catch (err: any) {
+    console.log("RIOT ERROR ON REQUEST:" + url);
+    console.log(JSON.stringify(err));
+
     if (err.response && err.response.status) {
       throw {
         status: err.response.status,

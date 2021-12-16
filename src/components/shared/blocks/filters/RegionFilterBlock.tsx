@@ -22,8 +22,8 @@ export default function RegionFilter(props: {
         <option value="RU">RU</option>
         <option value="TR1">TR</option>
         <option value="OC1">OC</option>
-        <option value="LA1">LA1</option>
-        <option value="LA2">LA2</option>
+        <option value="LA1">LAN</option>
+        <option value="LA2">LAS</option>
       </SelectInputForBlocks>
     </>
   );

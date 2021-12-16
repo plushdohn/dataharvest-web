@@ -21,8 +21,8 @@ export default function AddGamesFormRegionSelect(props: {
       <option value="RU">RU</option>
       <option value="BR">BR</option>
       <option value="TR">TR</option>
-      <option value="LA1">LA1</option>
-      <option value="LA2">LA2</option>
+      <option value="LA1">LAN</option>
+      <option value="LA2">LAS</option>
     </select>
   );
 }
