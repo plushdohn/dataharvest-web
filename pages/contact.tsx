@@ -13,7 +13,7 @@ export default function PrivacyPage() {
           <GenericSectionTitle>Reach out to me</GenericSectionTitle>
           <GenericParagraph>
             For any inquiry, advertising, feedback or support please contact me
-            at{" "}
+            directly at{" "}
             <a
               href="mailto:dohn@dataharvest.lol"
               className="font-semibold hover:underline focus:underline"

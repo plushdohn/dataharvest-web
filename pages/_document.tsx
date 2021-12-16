@@ -9,6 +9,14 @@ class MyDocument extends Document {
             name="description"
             content="Build custom queries for the League of Legends API; Understand the numbers behind keystones, champions, items, roles and more."
           />
+          <meta
+            name="keywords"
+            content="League of Legends, lol, query, blocks, dataharvest, data, database, games, ranked, soloqueue"
+          />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
           <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
           <link
             rel="apple-touch-icon"
@@ -28,11 +36,6 @@ class MyDocument extends Document {
             href="/favicon-16x16.png"
           />
           <link rel="manifest" href="/site.webmanifest" />
-          <script
-            data-ad-client="ca-pub-3303707366995624"
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-          ></script>
         </Head>
         <body>
           <Main />
