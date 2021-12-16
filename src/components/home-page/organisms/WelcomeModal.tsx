@@ -27,7 +27,7 @@ export default function WelcomeModal() {
           onClick={handleClosureClick}
           className="text-white text-sm mt-2 bg-gray-800 hover:bg-gray-700 w-full py-2 rounded"
         >
-          No, I&apos;ll use other people's games.
+          No, I&apos;ll use other people&apos;s games.
         </button>
       </div>
     </div>
