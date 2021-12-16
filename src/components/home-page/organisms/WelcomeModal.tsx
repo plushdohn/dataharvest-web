@@ -19,7 +19,10 @@ export default function WelcomeModal() {
           Would you like to add your match history to our database?
         </span>
         <Link href="/add-games">
-          <a className="text-white rounded bg-green-600 hover:bg-green-500 py-2 text-center text-sm mt-8 w-full font-semibold">
+          <a
+            onClick={handleClosureClick}
+            className="text-white rounded bg-green-600 hover:bg-green-500 py-2 text-center text-sm mt-8 w-full font-semibold"
+          >
             Yes, I&apos;d like to add my games.
           </a>
         </Link>

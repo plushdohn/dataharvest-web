@@ -6,6 +6,7 @@ import AddGamesFormSubmitButton from "../atoms/AddGamesFormSubmitButton";
 import { addSummonersGamesToDatabase } from "@/src/services/add-games";
 import AddGamesLoader from "../molecules/AddGamesLoader";
 import AddGamesDoneScreen from "../molecules/AddGamesDoneScreen";
+import { useRouter } from "next/router";
 
 export default function AddGamesForm() {
   const [region, setRegion] = useState("EUW");
@@ -14,6 +15,7 @@ export default function AddGamesForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [done, setDone] = useState(false);
+  const router = useRouter();
 
   async function handleSubmit() {
     if (captcha === null) {
@@ -29,7 +31,7 @@ export default function AddGamesForm() {
         captcha
       );
 
-      console.log(res);
+      setTimeout(() => router.push("/"), 2000);
 
       setDone(true);
     } catch (err: any) {

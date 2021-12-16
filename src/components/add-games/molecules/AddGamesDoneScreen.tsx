@@ -6,11 +6,7 @@ export default function AddGamesDoneScreen() {
     <div className="flex items-center">
       <DoneIcon colorClassOverride="text-green-500" sizeClassOverride="w-8" />
       <span className="ml-2 text-green-500 text-sm">
-        Games added successfully. Click{" "}
-        <Link href="/">
-          <a className="font-semibold hover:underline focus:underline">here</a>
-        </Link>{" "}
-        to go back to the editor.
+        Games added successfully. You're being redirected to the editor...
       </span>
     </div>
   );
