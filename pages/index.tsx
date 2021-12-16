@@ -17,11 +17,29 @@ import PickerModal from "@/src/components/home-page/organisms/PickerModal";
 import { RootState } from "@/src/store";
 import { useRouter } from "next/router";
 import { decode } from "base2048";
+import WelcomeModal from "@/src/components/home-page/organisms/WelcomeModal";
+import { showWelcomeModal } from "@/src/store/uiReducer";
 
 function Home() {
   const pickerModalOpen = useSelector(
     (state: RootState) => state.ui.pickerModalOpen
   );
+
+  const welcomeModalOpen = useSelector(
+    (state: RootState) => state.ui.welcomeModalOpen
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const isFirstTimer = window.localStorage.getItem("VISITED_BEFORE");
+
+    if (isFirstTimer === null) {
+      dispatch(showWelcomeModal());
+
+      window.localStorage.setItem("VISITED_BEFORE", "YES");
+    }
+  }, []);
 
   return (
     <>
@@ -39,6 +57,7 @@ function Home() {
           <OutputPanel />
         </div>
         {pickerModalOpen && <PickerModal />}
+        {welcomeModalOpen && <WelcomeModal />}
       </div>
     </>
   );

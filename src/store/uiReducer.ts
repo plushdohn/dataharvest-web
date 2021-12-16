@@ -6,6 +6,7 @@ export interface UIState {
   queryCaptcha: string | null;
   refreshGamesCaptcha: string | null;
   pickerModalOpen: boolean;
+  welcomeModalOpen: boolean;
 }
 
 const INITIAL_STATE: UIState = {
@@ -14,6 +15,7 @@ const INITIAL_STATE: UIState = {
   queryCaptcha: null,
   refreshGamesCaptcha: null,
   pickerModalOpen: false,
+  welcomeModalOpen: false,
 };
 
 const uiSlice = createSlice({
@@ -41,6 +43,12 @@ const uiSlice = createSlice({
     hidePickerModal: (state) => {
       state.pickerModalOpen = false;
     },
+    showWelcomeModal: (state) => {
+      state.welcomeModalOpen = true;
+    },
+    hideWelcomeModal: (state) => {
+      state.welcomeModalOpen = false;
+    },
   },
 });
 
@@ -52,6 +60,8 @@ export const {
   setRefreshGamesCaptcha,
   showPickerModal,
   hidePickerModal,
+  showWelcomeModal,
+  hideWelcomeModal,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;
