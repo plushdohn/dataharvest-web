@@ -8,8 +8,12 @@ const entries = Object.entries(ASSOCIATIONS.operations);
 export default function PickerPanelOperationsCategory() {
   return (
     <PickerPanelCategoryContainer title="Operations (one or more)">
-      {entries.map(([key]) => (
-        <OperationPicker key={key} id={key as OperationId} />
+      {entries.map(([key, data]) => (
+        <OperationPicker
+          key={key}
+          id={key as OperationId}
+          initialState={data.initialState}
+        />
       ))}
     </PickerPanelCategoryContainer>
   );
