@@ -7,7 +7,10 @@ export default function operationsHandler(operations: {
   const secondStage = {};
 
   for (const [id, args] of Object.entries(operations)) {
-    const [firstBlock, secondBlock] = processSingleOperation(id as OperationId);
+    const [firstBlock, secondBlock] = processSingleOperation(
+      id as OperationId,
+      args
+    );
 
     Object.assign(firstStage, firstBlock);
 
@@ -19,7 +22,7 @@ export default function operationsHandler(operations: {
   return [firstStage, secondStage];
 }
 
-function processSingleOperation(id: OperationId): [Object, Object?] {
+function processSingleOperation(id: OperationId, args: any): [Object, Object?] {
   switch (id) {
     case OperationId.AverageDamageDealt:
       return [
@@ -154,6 +157,110 @@ function processSingleOperation(id: OperationId): [Object, Object?] {
                 },
               ],
             },
+          },
+        },
+      ];
+    case OperationId.AverageRuneVariableValue:
+      return [
+        {
+          [OperationField.AverageRuneVariablevalue]: {
+            $avg: `$participants.runes.${args[0]}.${args[1]}`,
+          },
+        },
+      ];
+    case OperationId.AverageKills:
+      return [
+        {
+          [OperationField.AverageKills]: {
+            $avg: "$participants.kills",
+          },
+        },
+      ];
+    case OperationId.AverageDeaths:
+      return [
+        {
+          [OperationField.AverageDeaths]: {
+            $avg: "$participants.deaths",
+          },
+        },
+      ];
+    case OperationId.AverageAssists:
+      return [
+        {
+          [OperationField.AverageAssists]: {
+            $avg: "$participants.assists",
+          },
+        },
+      ];
+    case OperationId.AverageTimeSpentPlaying:
+      return [
+        {
+          [OperationField.AverageTimeSpentPlaying]: {
+            $avg: "$participants.timePlayed",
+          },
+        },
+      ];
+    case OperationId.AverageWardsPlaced:
+      return [
+        {
+          [OperationField.AverageWardsPlaced]: {
+            $avg: "$participants.wardsPlaced",
+          },
+        },
+      ];
+    case OperationId.AverageWardsKilled:
+      return [
+        {
+          [OperationField.AverageWardsKilled]: {
+            $avg: "$participants.wardsKilled",
+          },
+        },
+      ];
+    case OperationId.AverageTrueDamageDealt:
+      return [
+        {
+          [OperationField.AverageTrueDamageDealt]: {
+            $avg: "$participants.trueDamageDealt",
+          },
+        },
+      ];
+    case OperationId.AverageCCTimeDealt:
+      return [
+        {
+          [OperationField.AverageCCTimeDealt]: {
+            $avg: "$participants.timeCCingOthers",
+          },
+        },
+      ];
+    case OperationId.AverageTurretKills:
+      return [
+        {
+          [OperationField.AverageTurretKills]: {
+            $avg: "$participants.turretKills",
+          },
+        },
+      ];
+    case OperationId.AverageBaronKills:
+      return [
+        {
+          [OperationField.AverageBaronKills]: {
+            $avg: "$participants.baronKills",
+          },
+        },
+      ];
+    case OperationId.AverageDragonKills:
+      return [
+        {
+          [OperationField.AverageDragonKills]: {
+            $avg: "$participants.dragonKills",
+          },
+        },
+      ];
+    case OperationId.AverageGoldSpent:
+      return [
+        {
+          [OperationField.AverageGoldSpent]: {
+            $avg: "$participants.goldSpent",
           },
         },
       ];

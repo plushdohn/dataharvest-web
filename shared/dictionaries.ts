@@ -12,6 +12,7 @@ export const VALUES_DICTIONARY_EN: {
   [OperationField.AverageVisionScore]: "Average vision score",
   [OperationField.AverageCS]: "Average creep score",
   [OperationField.AverageGoldEarned]: "Average gold earned",
+  [OperationField.AverageGoldSpent]: "Average gold spent",
   [OperationField.Wins]: "Number of wins",
   [OperationField.WinRate]: "Win rate",
   [OperationField.GamesCount]: "Number of games",
@@ -20,6 +21,18 @@ export const VALUES_DICTIONARY_EN: {
   [OperationField.AverageMagicDamageDealtToChampions]:
     "Average magic damage to champions",
   [OperationField.CsPerMinute]: "Average CS per minute",
+  [OperationField.AverageRuneVariablevalue]: "Average rune variable value",
+  [OperationField.AverageKills]: "Average kills",
+  [OperationField.AverageDeaths]: "Average deaths",
+  [OperationField.AverageAssists]: "Average assists",
+  [OperationField.AverageTimeSpentPlaying]: "Average time spent playing",
+  [OperationField.AverageTrueDamageDealt]: "Average true damage dealt",
+  [OperationField.AverageWardsKilled]: "Average wards killed",
+  [OperationField.AverageWardsPlaced]: "Average wards placed",
+  [OperationField.AverageCCTimeDealt]: "Average cc time dealt",
+  [OperationField.AverageTurretKills]: "Average turret kills",
+  [OperationField.AverageDragonKills]: "Average dragon kills",
+  [OperationField.AverageBaronKills]: "Average baron kills",
 };
 
 export const ROLES_DICTIONARY_EN = new Map([
