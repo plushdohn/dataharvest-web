@@ -15,12 +15,12 @@ export default function QueryBottomSection() {
   const loading = useSelector((state: RootState) => state.queryApi.loading);
   const query = useSelector((state: RootState) => state.query);
   const runButtonDisabled = useMemo(
-    () => captcha === null || query.operations.length === 0,
+    () => captcha === null || Object.keys(query.operations).length === 0,
     [captcha, query]
   );
 
   const validationError = useMemo(() => {
-    if (query.operations.length === 0)
+    if (Object.keys(query.operations).length === 0)
       return "At least one operation is required.";
 
     return null;

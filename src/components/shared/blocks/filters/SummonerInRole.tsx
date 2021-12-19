@@ -1,17 +1,19 @@
-import SelectInputForBlocks from "@/src/components/SelectInputForBlocks";
-import TextInputForBlocks from "@/src/components/TextInputForBlocks";
-import React from "react";
+import SelectInputForBlocks from "@/src/components/shared/atoms/SelectInputForBlocks";
+import TextInputForBlocks from "@/src/components/shared/atoms/TextInputForBlocks";
 
-export default function SummonerInRoleFilter(props: {
+export default function SummonerInRoleFilter({
+  args,
+  setArgs,
+}: {
   args: [string, string];
   setArgs: (n: [string, string]) => any;
 }) {
   function handleSummonerChange(e: React.ChangeEvent<HTMLInputElement>) {
-    props.setArgs([e.currentTarget.value, props.args[1]]);
+    setArgs([e.currentTarget.value, args[1]]);
   }
 
   function handleRoleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    props.setArgs([props.args[0], e.currentTarget.value]);
+    setArgs([args[0], e.currentTarget.value]);
   }
 
   return (
@@ -19,11 +21,11 @@ export default function SummonerInRoleFilter(props: {
       <span>Only games where summoner&nbsp;</span>
       <TextInputForBlocks
         onChange={handleSummonerChange}
-        value={props.args[0]}
+        value={args[0]}
         className="mr-1"
       />
       <span>is playing role&nbsp;</span>
-      <SelectInputForBlocks onChange={handleRoleChange} value={props.args[1]}>
+      <SelectInputForBlocks onChange={handleRoleChange} value={args[1]}>
         <option value="TOP">Top</option>
         <option value="JUNGLE">Jungle</option>
         <option value="MIDDLE">Mid</option>

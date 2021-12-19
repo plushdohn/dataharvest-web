@@ -1,21 +1,23 @@
-import SelectInputForBlocks from "@/src/components/SelectInputForBlocks";
+import SelectInputForBlocks from "@/src/components/shared/atoms/SelectInputForBlocks";
 import { RootState } from "@/src/store";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 
-export default function ChampionWithRuneFilter(props: {
+export default function ChampionWithRuneFilter({
+  args,
+  setArgs,
+}: {
   args: [string, number];
   setArgs: (n: [string, number]) => any;
 }) {
   const ddragon = useSelector((state: RootState) => state.dataDragon);
 
   function handleChampionChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    props.setArgs([e.target.value, props.args[1]]);
+    setArgs([e.target.value, args[1]]);
   }
 
-  function handleMythicChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    console.log(e.target.value);
-    props.setArgs([props.args[0], parseInt(e.target.value)]);
+  function handleRuneChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    setArgs([args[0], parseInt(e.target.value)]);
   }
 
   const runes = useMemo(() => {
@@ -29,7 +31,7 @@ export default function ChampionWithRuneFilter(props: {
       <span>Only games where champion&nbsp;</span>
       <SelectInputForBlocks
         onChange={handleChampionChange}
-        value={props.args[0]}
+        value={args[0]}
         className="mr-1"
       >
         {Object.entries(ddragon.champions).map(([key, data]) => (
@@ -40,8 +42,8 @@ export default function ChampionWithRuneFilter(props: {
       </SelectInputForBlocks>
       <span>has rune&nbsp;</span>
       <SelectInputForBlocks
-        onChange={handleMythicChange}
-        value={props.args[1].toString()}
+        onChange={handleRuneChange}
+        value={args[1].toString()}
       >
         {runes.map(([runeKey, rune]) => (
           <option value={runeKey} key={runeKey}>

@@ -1,18 +1,20 @@
-import SelectInputForBlocks from "@/components/SelectInputForBlocks";
-import React from "react";
+import SelectInputForBlocks from "@/src/components/shared/atoms/SelectInputForBlocks";
 
-export default function RegionFilter(props: {
+export default function RegionFilter({
+  args,
+  setArgs,
+}: {
   args: string;
   setArgs: (n: string) => any;
 }) {
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    props.setArgs(e.target.value);
+    setArgs(e.target.value);
   }
 
   return (
     <>
       <span>Only games from region&nbsp;</span>
-      <SelectInputForBlocks onChange={handleChange} value={props.args}>
+      <SelectInputForBlocks onChange={handleChange} value={args}>
         <option value="EUW1">EUW</option>
         <option value="KR">KR</option>
         <option value="NA1">NA</option>

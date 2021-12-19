@@ -1,3 +1,4 @@
+import { initial } from "lodash";
 import {
   FilterId,
   GroupId,
@@ -9,8 +10,8 @@ import ChampionFilter from "./filters/ChampionFilter";
 import ChampionWithMythicFilter from "./filters/ChampionWithMythicFilter";
 import ChampionWithRuneFilter from "./filters/ChampionWithRuneFilter";
 import QueueFilter from "./filters/QueueFilter";
-import RegionFilter from "./filters/RegionFilterBlock";
-import SummonerFilter from "./filters/SummonerFilterBlock";
+import RegionFilter from "./filters/RegionFilter";
+import SummonerFilter from "./filters/SummonerFilter";
 import SummonerInRoleFilter from "./filters/SummonerInRole";
 import SummonerInTeamFilter from "./filters/SummonerInTeamFilter";
 import ChampionGroup from "./groups/ChampionGroup";
@@ -54,40 +55,23 @@ type BlockTemplate<Type> = (p: {
 }) => JSX.Element;
 
 type Association<T1 extends string> = {
-  [key in T1]: Entry<any>;
+  [key in T1]: {
+    component: BlockTemplate<any>;
+    initialState?: any;
+  };
 };
-
-type Entry<Type> = {
-  component: BlockTemplate<Type>;
-  initialState: Type;
-};
-
-type OperationAssociation<Type extends string> = {
-  [key in Type]: OperationEntry;
-};
-
-type OperationEntry = () => JSX.Element;
 
 export const ASSOCIATIONS: {
   starters: Association<StarterId>;
   filters: Association<FilterId>;
   subjects: Association<SubjectId>;
   groups: Association<GroupId>;
-  operations: OperationAssociation<OperationId>;
-  sorts: {
-    [key in OperationId]: {
-      component: (props: {
-        asc: boolean;
-        setAsc: (n: boolean) => void;
-      }) => JSX.Element;
-      initialState: boolean;
-    };
-  };
+  operations: Association<OperationId>;
+  sorts: Association<OperationId>;
 } = {
   starters: {
     [StarterId.All]: {
       component: AllStarter,
-      initialState: null,
     },
     [StarterId.Patch]: {
       component: PatchStarter,
@@ -121,17 +105,17 @@ export const ASSOCIATIONS: {
     },
     [FilterId.SummonerInTeam]: {
       component: SummonerInTeamFilter,
-      initialState: ["Brizz94", 100],
+      initialState: ["Re Brizz", 100],
     },
     [FilterId.ChampionWithRune]: {
       component: ChampionWithRuneFilter,
-      initialState: ["Zed", 8005],
+      initialState: ["Zed", 8009],
     },
   },
   subjects: {
     [SubjectId.Champion]: {
       component: ChampionSubject,
-      initialState: "Aatrox",
+      initialState: "Pyke",
     },
     [SubjectId.Role]: {
       component: RoleSubject,
@@ -145,91 +129,70 @@ export const ASSOCIATIONS: {
   groups: {
     [GroupId.Champion]: {
       component: ChampionGroup,
-      initialState: null,
     },
     [GroupId.Keystone]: {
       component: KeystoneGroup,
-      initialState: null,
     },
     [GroupId.Mythic]: {
       component: MythicGroup,
-      initialState: null,
     },
     [GroupId.Role]: {
       component: RoleGroup,
-      initialState: null,
     },
     [GroupId.Summoner]: {
       component: SummonerGroup,
-      initialState: null,
     },
   },
   operations: {
-    [OperationId.AverageCS]: AverageCSOp,
-    [OperationId.AverageDamageDealt]: AverageDamageDealtOp,
-    [OperationId.AverageDamageDealtToChampions]:
-      AverageDamageDealtToChampionssOp,
-    [OperationId.AverageDamageDealtToStructures]:
-      AverageDamageDealtToStructuresOp,
-    [OperationId.AverageDamageTaken]: AverageDamageTakenOp,
-    [OperationId.AverageGoldEarned]: AverageGoldEarnedOp,
-    [OperationId.AverageHealing]: AverageHealingOp,
-    [OperationId.AverageMagicDamageDealtToChampions]:
-      AverageMagicDamageToChampionsOp,
-    [OperationId.AveragePhysicalDamageDealtToChampions]:
-      AveragePhysicalDamageToChampionsOp,
-    [OperationId.AverageVisionScore]: AverageVisionScoreOp,
-    [OperationId.WinRate]: WinRateOp,
-    [OperationId.CsPerMinute]: AverageCsPerMinuteOp,
+    [OperationId.AverageCS]: {
+      component: AverageCSOp,
+    },
+    [OperationId.AverageDamageDealt]: {
+      component: AverageDamageDealtOp,
+    },
+    [OperationId.AverageDamageDealtToChampions]: {
+      component: AverageDamageDealtToChampionssOp,
+    },
+    [OperationId.AverageDamageDealtToStructures]: {
+      component: AverageDamageDealtToStructuresOp,
+    },
+    [OperationId.AverageDamageTaken]: { component: AverageDamageTakenOp },
+    [OperationId.AverageGoldEarned]: { component: AverageGoldEarnedOp },
+    [OperationId.AverageHealing]: { component: AverageHealingOp },
+    [OperationId.AverageMagicDamageDealtToChampions]: {
+      component: AverageMagicDamageToChampionsOp,
+    },
+    [OperationId.AveragePhysicalDamageDealtToChampions]: {
+      component: AveragePhysicalDamageToChampionsOp,
+    },
+    [OperationId.AverageVisionScore]: { component: AverageVisionScoreOp },
+    [OperationId.WinRate]: { component: WinRateOp },
+    [OperationId.CsPerMinute]: { component: AverageCsPerMinuteOp },
   },
   sorts: {
     [OperationId.AverageCS]: {
       component: AverageCSSort,
-      initialState: false,
     },
     [OperationId.AverageDamageDealt]: {
       component: AverageDamageDealtSort,
-      initialState: false,
     },
     [OperationId.AverageDamageDealtToChampions]: {
       component: AverageDamageDealtToChampionsSort,
-      initialState: false,
     },
     [OperationId.AverageDamageDealtToStructures]: {
       component: AverageDamageDealtToStructuresSort,
-      initialState: false,
     },
-    [OperationId.AverageDamageTaken]: {
-      component: AverageDamageTakenSort,
-      initialState: false,
-    },
-    [OperationId.AverageGoldEarned]: {
-      component: AverageGoldEarnedSort,
-      initialState: false,
-    },
-    [OperationId.AverageHealing]: {
-      component: AverageHealingSort,
-      initialState: false,
-    },
+    [OperationId.AverageDamageTaken]: { component: AverageDamageTakenSort },
+    [OperationId.AverageGoldEarned]: { component: AverageGoldEarnedSort },
+    [OperationId.AverageHealing]: { component: AverageHealingSort },
     [OperationId.AverageMagicDamageDealtToChampions]: {
       component: AverageMagicDamageToChampionsSort,
-      initialState: false,
     },
     [OperationId.AveragePhysicalDamageDealtToChampions]: {
       component: AveragePhysicalDamageToChampionsSort,
-      initialState: false,
     },
-    [OperationId.AverageVisionScore]: {
-      component: AverageVisionScoreSort,
-      initialState: false,
-    },
-    [OperationId.WinRate]: {
-      component: WinRateSort,
-      initialState: false,
-    },
-    [OperationId.CsPerMinute]: {
-      component: AverageCsPerMinuteSort,
-      initialState: false,
-    },
+    [OperationId.AverageVisionScore]: { component: AverageVisionScoreSort },
+    [OperationId.WinRate]: { component: WinRateSort },
+    [OperationId.CsPerMinute]: { component: AverageCsPerMinuteSort },
   },
 };

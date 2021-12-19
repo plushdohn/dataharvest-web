@@ -1,18 +1,21 @@
-import CheckboxInputForBlocks from "@/components/CheckboxInputForBlocks";
+import CheckboxInputForBlocks from "@/src/components/shared/atoms/CheckboxInputForBlocks";
 
-export default function AverageGoldEarnedSort(props: {
-  asc: boolean;
-  setAsc: (n: boolean) => any;
+export default function AverageGoldEarnedSort({
+  args,
+  setArgs,
+}: {
+  args: boolean;
+  setArgs: (n: boolean) => any;
 }) {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    props.setAsc(e.currentTarget.checked);
+    setArgs(e.currentTarget.checked);
   }
 
   return (
     <>
       <span>
         Sort by average gold earned (ascending?
-        <CheckboxInputForBlocks onChange={handleChange} checked={props.asc} />)
+        <CheckboxInputForBlocks onChange={handleChange} checked={args} />)
       </span>
     </>
   );

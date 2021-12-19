@@ -10,12 +10,11 @@ export function StarterDummy<Type>(props: {
   id: StarterId;
   initialState: Type;
 }) {
+  const ComponentToMount = ASSOCIATIONS.starters[props.id].component;
+
   return (
     <BlockContainer kind={BlockKind.Starter}>
-      {ASSOCIATIONS.starters[props.id].component({
-        args: props.initialState,
-        setArgs: () => {},
-      })}
+      <ComponentToMount args={props.initialState} setArgs={() => {}} />
     </BlockContainer>
   );
 }
@@ -36,16 +35,15 @@ export function StarterPicker<Type>(props: {
     );
   }
 
+  const ComponentToMount = ASSOCIATIONS.starters[props.id].component;
+
   return (
     <BlockContainer
       kind={BlockKind.Starter}
       onClick={handleClick}
       className="mb-4"
     >
-      {ASSOCIATIONS.starters[props.id].component({
-        args,
-        setArgs,
-      })}
+      <ComponentToMount args={args} setArgs={setArgs} />
     </BlockContainer>
   );
 }
@@ -63,12 +61,11 @@ export function StarterBlock<Type>(props: { id: StarterId }) {
     );
   }
 
+  const ComponentToMount = ASSOCIATIONS.starters[props.id].component;
+
   return (
     <BlockContainer kind={BlockKind.Starter}>
-      {ASSOCIATIONS.starters[props.id].component({
-        args,
-        setArgs: handleChange,
-      })}
+      <ComponentToMount args={args} setArgs={handleChange} />
     </BlockContainer>
   );
 }

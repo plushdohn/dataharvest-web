@@ -1,13 +1,13 @@
 import { OperationField, OperationId } from "../../shared/types";
 
-export default function operationsHandler(
-  operations: OperationId[]
-): [Object, Object?] {
+export default function operationsHandler(operations: {
+  [key in OperationId]?: any;
+}): [Object, Object?] {
   const firstStage = {};
   const secondStage = {};
 
-  for (const id of operations) {
-    const [firstBlock, secondBlock] = processSingleOperation(id);
+  for (const [id, args] of Object.entries(operations)) {
+    const [firstBlock, secondBlock] = processSingleOperation(id as OperationId);
 
     Object.assign(firstStage, firstBlock);
 

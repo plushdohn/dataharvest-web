@@ -1,27 +1,27 @@
-import SelectInputForBlocks from "@/src/components/SelectInputForBlocks";
-import TextInputForBlocks from "@/src/components/TextInputForBlocks";
+import SelectInputForBlocks from "@/src/components/shared/atoms/SelectInputForBlocks";
+import TextInputForBlocks from "@/src/components/shared/atoms/TextInputForBlocks";
 
-export default function SummonerInTeamFilter(props: {
+export default function SummonerInTeamFilter({
+  args,
+  setArgs,
+}: {
   args: [string, number];
   setArgs: (n: [string, number]) => any;
 }) {
   function handleSummonerChange(e: React.ChangeEvent<HTMLInputElement>) {
-    props.setArgs([e.currentTarget.value, props.args[1]]);
+    setArgs([e.currentTarget.value, args[1]]);
   }
 
   function handleTeamChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    props.setArgs([props.args[0], parseInt(e.currentTarget.value)]);
+    setArgs([args[0], parseInt(e.currentTarget.value)]);
   }
 
   return (
     <div>
       <span>Only games where summoner&nbsp;</span>
-      <TextInputForBlocks
-        onChange={handleSummonerChange}
-        value={props.args[0]}
-      />
+      <TextInputForBlocks onChange={handleSummonerChange} value={args[0]} />
       <span>&nbsp;is in team&nbsp;</span>
-      <SelectInputForBlocks onChange={handleTeamChange} value={props.args[1]}>
+      <SelectInputForBlocks onChange={handleTeamChange} value={args[1]}>
         <option value={100}>BLUE</option>
         <option value={200}>RED</option>
       </SelectInputForBlocks>

@@ -11,17 +11,19 @@ import {
 const INITIAL_STATE: Query = {
   starter: {
     id: StarterId.Patch,
-    args: "11.23",
+    args: "11.24",
   },
   filters: {},
-  operations: [OperationId.AverageDamageDealtToChampions],
   group: {
     id: GroupId.Champion,
     args: null,
   },
+  operations: {
+    [OperationId.AverageDamageDealtToChampions]: null,
+  },
   sort: {
     id: OperationId.AverageDamageDealtToChampions,
-    ascending: false,
+    args: false,
   },
 };
 
@@ -74,22 +76,26 @@ const querySlice = createSlice({
     removeGroup: (state) => {
       delete state.group;
     },
-    addOperation: (state, action: PayloadAction<OperationId>) => {
-      if (!state.operations.includes(action.payload))
-        state.operations.push(action.payload);
+    updateOrAddOperation: (
+      state,
+      action: PayloadAction<{
+        id: OperationId;
+        args: any;
+      }>
+    ) => {
+      state.operations[action.payload.id] = action.payload.args || null;
     },
     removeOperation: (state, action: PayloadAction<OperationId>) => {
-      state.operations = state.operations.filter((el) => el !== action.payload);
+      delete state.operations[action.payload];
 
-      if (state.sort && state.sort.id === action.payload) {
-        delete state.sort;
-      }
+      // also remove current sort if associated with this operation
+      if (state.sort && state.sort.id === action.payload) delete state.sort;
     },
     updateOrAddSort: (
       state,
       action: PayloadAction<{
         id: OperationId;
-        ascending: boolean;
+        args: any;
       }>
     ) => {
       state.sort = action.payload;
@@ -101,7 +107,7 @@ const querySlice = createSlice({
       state.filters = {};
       delete state.subject;
       delete state.group;
-      state.operations = [];
+      state.operations = {};
       delete state.sort;
     },
   },
@@ -115,7 +121,7 @@ export const {
   removeSubject,
   updateOrAddGroup,
   removeGroup,
-  addOperation,
+  updateOrAddOperation,
   removeOperation,
   updateOrAddSort,
   removeSort,

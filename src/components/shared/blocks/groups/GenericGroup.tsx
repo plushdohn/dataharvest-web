@@ -7,12 +7,11 @@ import { ASSOCIATIONS } from "../associations";
 import BlockContainer from "../BlockContainer";
 
 export function GroupDummy<Type>(props: { id: GroupId; initialState: Type }) {
+  const ComponentToMount = ASSOCIATIONS.groups[props.id].component;
+
   return (
     <BlockContainer kind={BlockKind.Group}>
-      {ASSOCIATIONS.groups[props.id].component({
-        args: props.initialState,
-        setArgs: () => {},
-      })}
+      <ComponentToMount args={props.initialState} setArgs={() => {}} />
     </BlockContainer>
   );
 }
@@ -30,16 +29,15 @@ export function GroupPicker<Type>(props: { id: GroupId; initialState: Type }) {
     );
   }
 
+  const ComponentToMount = ASSOCIATIONS.groups[props.id].component;
+
   return (
     <BlockContainer
       kind={BlockKind.Group}
       onClick={handleClick}
       className="my-4"
     >
-      {ASSOCIATIONS.groups[props.id].component({
-        args,
-        setArgs,
-      })}
+      <ComponentToMount args={args} setArgs={setArgs} />
     </BlockContainer>
   );
 }
@@ -57,15 +55,14 @@ export function GroupBlock<Type>(props: { id: GroupId }) {
     );
   }
 
+  const ComponentToMount = ASSOCIATIONS.groups[props.id].component;
+
   return (
     <BlockContainer
       kind={BlockKind.Group}
       onClick={() => dispatch(removeGroup())}
     >
-      {ASSOCIATIONS.groups[props.id].component({
-        args,
-        setArgs: handleChange,
-      })}
+      <ComponentToMount args={args} setArgs={handleChange} />
     </BlockContainer>
   );
 }

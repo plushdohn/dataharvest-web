@@ -14,7 +14,7 @@ export default function QueryCanvasClearButton() {
       onClick={handleClick}
       className="py-1.5 px-4 text-white text-sm bg-gray-800 hover:bg-gray-700 rounded flex items-center justify-center"
     >
-      <span className="mr-2">Reset</span>
+      <span className="mr-2">Clear</span>
       <QueryCanvasClearIcon />
     </button>
   );

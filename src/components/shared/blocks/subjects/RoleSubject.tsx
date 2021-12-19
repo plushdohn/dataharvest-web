@@ -1,18 +1,20 @@
-import React from "react";
-import SelectInputForBlocks from "../../../SelectInputForBlocks";
+import SelectInputForBlocks from "../../atoms/SelectInputForBlocks";
 
-export default function RoleSubject(props: {
-  args: string;
+export default function RoleSubject({
+  args = "TOP",
+  setArgs,
+}: {
+  args?: string;
   setArgs: (n: string) => any;
 }) {
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    props.setArgs(e.currentTarget.value);
+    setArgs(e.currentTarget.value);
   }
 
   return (
     <>
       <span>Regarding role&nbsp;</span>
-      <SelectInputForBlocks onChange={handleChange} value={props.args}>
+      <SelectInputForBlocks onChange={handleChange} value={args}>
         <option value="TOP">Top</option>
         <option value="JUNGLE">Jungle</option>
         <option value="MIDDLE">Mid</option>

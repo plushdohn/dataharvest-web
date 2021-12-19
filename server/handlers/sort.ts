@@ -1,54 +1,54 @@
 import { OperationField, OperationId } from "../../shared/types";
 
-export default function sortHandler(id: OperationId, asc: boolean): Object {
+export default function sortHandler(id: OperationId, args: any): Object {
   switch (id) {
     case OperationId.AverageDamageDealt:
       return {
-        [OperationField.AverageDamageDealt]: asc ? 1 : -1,
+        [OperationField.AverageDamageDealt]: args ? 1 : -1,
       };
     case OperationId.AverageDamageDealtToChampions:
       return {
-        [OperationField.AverageDamageDealtToChampions]: asc ? 1 : -1,
+        [OperationField.AverageDamageDealtToChampions]: args ? 1 : -1,
       };
     case OperationId.AverageDamageDealtToStructures:
       return {
-        [OperationField.AverageDamageDealtToStructures]: asc ? 1 : -1,
+        [OperationField.AverageDamageDealtToStructures]: args ? 1 : -1,
       };
     case OperationId.AverageHealing:
       return {
-        [OperationField.AverageHealing]: asc ? 1 : -1,
+        [OperationField.AverageHealing]: args ? 1 : -1,
       };
     case OperationId.AverageCS:
       return {
-        [OperationField.AverageCS]: asc ? 1 : -1,
+        [OperationField.AverageCS]: args ? 1 : -1,
       };
     case OperationId.AverageGoldEarned:
       return {
-        [OperationField.AverageGoldEarned]: asc ? 1 : -1,
+        [OperationField.AverageGoldEarned]: args ? 1 : -1,
       };
     case OperationId.AverageVisionScore:
       return {
-        [OperationField.AverageVisionScore]: asc ? 1 : -1,
+        [OperationField.AverageVisionScore]: args ? 1 : -1,
       };
     case OperationId.AveragePhysicalDamageDealtToChampions:
       return {
-        [OperationField.AveragePhysicalDamageDealtToChampions]: asc ? 1 : -1,
+        [OperationField.AveragePhysicalDamageDealtToChampions]: args ? 1 : -1,
       };
     case OperationId.AverageMagicDamageDealtToChampions:
       return {
-        [OperationField.AverageMagicDamageDealtToChampions]: asc ? 1 : -1,
+        [OperationField.AverageMagicDamageDealtToChampions]: args ? 1 : -1,
       };
     case OperationId.AverageDamageTaken:
       return {
-        [OperationField.AverageDamageTaken]: asc ? 1 : -1,
+        [OperationField.AverageDamageTaken]: args ? 1 : -1,
       };
     case OperationId.WinRate:
       return {
-        [OperationField.WinRate]: asc ? 1 : -1,
+        [OperationField.WinRate]: args ? 1 : -1,
       };
     case OperationId.CsPerMinute:
       return {
-        [OperationField.CsPerMinute]: asc ? 1 : -1,
+        [OperationField.CsPerMinute]: args ? 1 : -1,
       };
   }
 }

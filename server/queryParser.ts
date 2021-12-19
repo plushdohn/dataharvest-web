@@ -61,7 +61,7 @@ export function parse(source: Query): Document[] {
   }
 
   const operations = source.operations;
-  if (operations.length === 0) {
+  if (Object.keys(operations).length === 0) {
     throw new Error("At least one operation is required.");
   }
 
@@ -104,7 +104,7 @@ export function parse(source: Query): Document[] {
   const sort = source.sort;
   if (sort) {
     output.push({
-      $sort: sortHandler(sort.id, sort.ascending),
+      $sort: sortHandler(sort.id, sort.args),
     });
   }
 

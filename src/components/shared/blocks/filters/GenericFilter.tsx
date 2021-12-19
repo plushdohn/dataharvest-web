@@ -7,12 +7,11 @@ import BlockContainer from "../BlockContainer";
 import { ASSOCIATIONS } from "../associations";
 
 export function FilterDummy<Type>(props: { id: FilterId; initialState: Type }) {
+  const ComponentToMount = ASSOCIATIONS.filters[props.id].component;
+
   return (
     <BlockContainer kind={BlockKind.Filter}>
-      {ASSOCIATIONS.filters[props.id].component({
-        args: props.initialState,
-        setArgs: () => {},
-      })}
+      <ComponentToMount args={props.initialState} setArgs={() => {}} />
     </BlockContainer>
   );
 }
@@ -33,16 +32,15 @@ export function FilterPicker<Type>(props: {
     );
   }
 
+  const ComponentToMount = ASSOCIATIONS.filters[props.id].component;
+
   return (
     <BlockContainer
       kind={BlockKind.Filter}
       onClick={handleClick}
       className="my-4"
     >
-      {ASSOCIATIONS.filters[props.id].component({
-        args,
-        setArgs,
-      })}
+      <ComponentToMount args={args} setArgs={setArgs} />
     </BlockContainer>
   );
 }
@@ -60,15 +58,14 @@ export function FilterBlock<Type>(props: { id: FilterId }) {
     );
   }
 
+  const ComponentToMount = ASSOCIATIONS.filters[props.id].component;
+
   return (
     <BlockContainer
       kind={BlockKind.Filter}
       onClick={() => dispatch(removeFilter(props.id))}
     >
-      {ASSOCIATIONS.filters[props.id].component({
-        args,
-        setArgs: handleChange,
-      })}
+      <ComponentToMount args={args} setArgs={handleChange} />
     </BlockContainer>
   );
 }

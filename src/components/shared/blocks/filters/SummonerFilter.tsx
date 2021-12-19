@@ -1,10 +1,10 @@
 import TextInputForBlocks from "@/src/components/shared/atoms/TextInputForBlocks";
 
-export default function SummonerSubject({
-  args = "hide on bush",
+export default function SummonerFilter({
+  args,
   setArgs,
 }: {
-  args?: string;
+  args: string;
   setArgs: (n: string) => any;
 }) {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -13,7 +13,7 @@ export default function SummonerSubject({
 
   return (
     <>
-      <span>Regarding summoner&nbsp;</span>
+      <span>Only games with summoner&nbsp;</span>
       <TextInputForBlocks value={args} onChange={handleChange} />
     </>
   );

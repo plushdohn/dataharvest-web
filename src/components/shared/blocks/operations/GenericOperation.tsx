@@ -1,24 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addOperation, removeOperation } from "@/src/store/queryReducer";
+import {
+  updateOrAddOperation,
+  removeOperation,
+} from "@/src/store/queryReducer";
 import { BlockKind, OperationId } from "shared/types";
 import BlockContainer from "../BlockContainer";
 import { ASSOCIATIONS } from "../associations";
+import { RootState } from "@/src/store";
 
-export function OperationDummy(props: { id: OperationId }) {
+export function OperationDummy<Type>(props: {
+  id: OperationId;
+  initialState: Type;
+}) {
+  const ComponentToMount = ASSOCIATIONS.operations[props.id].component;
+
   return (
     <BlockContainer kind={BlockKind.Operation}>
-      {ASSOCIATIONS.operations[props.id]()}
+      <ComponentToMount args={props.initialState} setArgs={() => {}} />
     </BlockContainer>
   );
 }
 
-export function OperationPicker(props: { id: OperationId }) {
+export function OperationPicker<Type>(props: {
+  id: OperationId;
+  initialState: Type;
+}) {
   const dispatch = useDispatch();
+  const [args, setArgs] = useState(props.initialState);
 
   function handleClick() {
-    dispatch(addOperation(props.id));
+    dispatch(
+      updateOrAddOperation({
+        id: props.id,
+        args,
+      })
+    );
   }
+
+  const ComponentToMount = ASSOCIATIONS.operations[props.id].component;
 
   return (
     <BlockContainer
@@ -26,20 +46,34 @@ export function OperationPicker(props: { id: OperationId }) {
       onClick={handleClick}
       className="my-4"
     >
-      {ASSOCIATIONS.operations[props.id]()}
+      <ComponentToMount args={args} setArgs={setArgs} />
     </BlockContainer>
   );
 }
 
-export function OperationBlock(props: { id: OperationId }) {
+export function OperationBlock<Type>(props: { id: OperationId }) {
+  const args = useSelector(
+    (state: RootState) => state.query.operations[props.id]
+  );
   const dispatch = useDispatch();
+
+  function handleChange(n: Type) {
+    dispatch(
+      updateOrAddOperation({
+        id: props.id,
+        args: n,
+      })
+    );
+  }
+
+  const ComponentToMount = ASSOCIATIONS.operations[props.id].component;
 
   return (
     <BlockContainer
       kind={BlockKind.Operation}
       onClick={() => dispatch(removeOperation(props.id))}
     >
-      {ASSOCIATIONS.operations[props.id]()}
+      <ComponentToMount args={args} setArgs={handleChange} />
     </BlockContainer>
   );
 }

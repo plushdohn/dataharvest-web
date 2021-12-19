@@ -1,17 +1,19 @@
-import SelectInputForBlocks from "../../../SelectInputForBlocks";
+import SelectInputForBlocks from "../../atoms/SelectInputForBlocks";
 
-export default function PatchStarter(props: {
+type Props = {
   args: string;
-  setArgs: (n: string) => any;
-}) {
+  setArgs: (n: string) => void;
+};
+
+export default function PatchStarter({ args, setArgs }: Props) {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    props.setArgs(e.target.value);
+    setArgs(e.target.value);
   };
 
   return (
     <>
       <span>Use games from patch&nbsp;</span>
-      <SelectInputForBlocks onChange={handleChange} value={props.args}>
+      <SelectInputForBlocks onChange={handleChange} value={args}>
         <option value="11.24">11.24</option>
       </SelectInputForBlocks>
     </>

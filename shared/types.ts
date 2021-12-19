@@ -87,10 +87,12 @@ export interface Query {
     id: GroupId;
     args: any;
   };
-  operations: OperationId[];
+  operations: {
+    [key in OperationId]?: any;
+  };
   sort?: {
     id: OperationId;
-    ascending: boolean;
+    args: any;
   };
 }
 

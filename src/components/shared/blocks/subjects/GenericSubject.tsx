@@ -10,12 +10,11 @@ export function SubjectDummy<Type>(props: {
   id: SubjectId;
   initialState: Type;
 }) {
+  const ComponentToMount = ASSOCIATIONS.subjects[props.id].component;
+
   return (
     <BlockContainer kind={BlockKind.Subject}>
-      {ASSOCIATIONS.subjects[props.id].component({
-        args: props.initialState,
-        setArgs: () => {},
-      })}
+      <ComponentToMount args={props.initialState} setArgs={() => {}} />
     </BlockContainer>
   );
 }
@@ -36,16 +35,15 @@ export function SubjectPicker<Type>(props: {
     );
   }
 
+  const ComponentToMount = ASSOCIATIONS.subjects[props.id].component;
+
   return (
     <BlockContainer
       kind={BlockKind.Subject}
       onClick={handleClick}
       className="my-4"
     >
-      {ASSOCIATIONS.subjects[props.id].component({
-        args,
-        setArgs,
-      })}
+      <ComponentToMount args={args} setArgs={setArgs} />
     </BlockContainer>
   );
 }
