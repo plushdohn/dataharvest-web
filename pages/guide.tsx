@@ -106,6 +106,7 @@ export default function GuidePage() {
                 <FilterDummy id={FilterId.Summoner} initialState="Babus" />
                 <OperationDummy
                   id={OperationId.AverageDamageDealtToStructures}
+                  initialState={null}
                 />
                 <ExampleBlockText className="mt-4">
                   Instead it&apos;s actually just telling the database to use
@@ -124,6 +125,7 @@ export default function GuidePage() {
                 <SubjectDummy id={SubjectId.Summoner} initialState="Babus" />
                 <OperationDummy
                   id={OperationId.AverageDamageDealtToStructures}
+                  initialState={null}
                 />
               </ExampleBlock>
               <GuideParagraph>
@@ -160,6 +162,7 @@ export default function GuidePage() {
                 <SubjectDummy id={SubjectId.Role} initialState="BOTTOM" />
                 <OperationDummy
                   id={OperationId.AverageDamageDealtToChampions}
+                  initialState={null}
                 />
               </ExampleBlock>
               <GuideParagraph>
@@ -204,6 +207,7 @@ export default function GuidePage() {
                 <GroupDummy id={GroupId.Keystone} initialState={null} />
                 <OperationDummy
                   id={OperationId.AverageDamageDealtToChampions}
+                  initialState={null}
                 />
                 <SortDummy
                   id={OperationId.AverageDamageDealtToChampions}

@@ -12,13 +12,8 @@ export default function PrivacyPage() {
         <div className="flex flex-col w-full lg:w-1/2 2xl:w-1/3">
           <GenericSectionTitle>Reach out to me</GenericSectionTitle>
           <GenericParagraph>
-            You can reach me on personal Discord for feature requests, bug
-            reports or just to say hi:{" "}
-            <span className="font-semibold">DoHn#3669</span>
-            <br />
-            <br />
-            For any inquiry, advertising or support please contact me directly
-            at{" "}
+            For bug reports, feature requests, advertising or any inquiry please
+            contact me directly at{" "}
             <a
               href="mailto:dohn@dataharvest.lol"
               className="font-semibold hover:underline focus:underline"
@@ -26,6 +21,10 @@ export default function PrivacyPage() {
               dohn@dataharvest.lol
             </a>
             .
+            <br />
+            <br />
+            You can also reach me on my personal Discord to say hi:{" "}
+            <span className="font-semibold">DoHn#3669</span>
           </GenericParagraph>
         </div>
       </div>
