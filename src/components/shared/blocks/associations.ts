@@ -5,6 +5,7 @@ import {
   StarterId,
   SubjectId,
 } from "shared/types";
+import AverageRankFilter from "./filters/AverageRankFilter";
 import ChampionFilter from "./filters/ChampionFilter";
 import ChampionWithMythicFilter from "./filters/ChampionWithMythicFilter";
 import ChampionWithRuneFilter from "./filters/ChampionWithRuneFilter";
@@ -119,6 +120,10 @@ export const ASSOCIATIONS: {
     [FilterId.Queue]: {
       component: QueueFilter,
       initialState: 420,
+    },
+    [FilterId.AverageRank]: {
+      component: AverageRankFilter,
+      initialState: 20,
     },
     [FilterId.ChampionWithMythic]: {
       component: ChampionWithMythicFilter,

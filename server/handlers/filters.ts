@@ -92,5 +92,9 @@ function processFilter(id: FilterId, args: any): Object {
           },
         },
       };
+    case FilterId.AverageRank:
+      return {
+        averageRank: { $gte: args },
+      };
   }
 }

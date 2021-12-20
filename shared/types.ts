@@ -53,6 +53,7 @@ export enum FilterId {
   SummonerInRole = "SUMMONER_IN_ROLE",
   SummonerInTeam = "SUMMONER_IN_TEAM",
   ChampionWithRune = "CHAMPION_WITH_RUNE",
+  AverageRank = "AVERAGE_RANK",
 }
 export enum SubjectId {
   Summoner = "SUMMONER",
