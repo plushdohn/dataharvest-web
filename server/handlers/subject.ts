@@ -14,5 +14,9 @@ export default function subjectHandler(id: SubjectId, args: any): Object {
       return {
         "participants.teamPosition": args,
       };
+    case SubjectId.Keystone:
+      return {
+        "participants.runes.primary.keystone.id": args,
+      };
   }
 }

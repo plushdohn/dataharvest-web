@@ -8,6 +8,7 @@ import QueryCanvas from "@/components/home-page/organisms/QueryCanvas";
 import {
   getChampionDataForCurrentPatch,
   getItemDataForCurrentPatch,
+  getListOfKeystoneIdsForCurrentPatch,
   getRuneDataForCurrentPatch,
 } from "utils/ddragon";
 import { MYTHICS_SET } from "shared/dictionaries";
@@ -73,6 +74,7 @@ export default function HomeWrapper(
         runes: p.dataDragon.runes,
         items: p.dataDragon.items,
         mythics: p.dataDragon.mythics,
+        keystoneIds: p.dataDragon.keystoneIds,
       })
     );
   }, []);
@@ -84,6 +86,7 @@ export async function getStaticProps() {
   const champions = await getChampionDataForCurrentPatch();
   const runes = await getRuneDataForCurrentPatch();
   const items = await getItemDataForCurrentPatch();
+  const keystoneIds = await getListOfKeystoneIdsForCurrentPatch();
 
   return {
     props: {
@@ -94,6 +97,7 @@ export async function getStaticProps() {
         mythics: [...MYTHICS_SET]
           .filter((mythId) => items[mythId] !== undefined)
           .map((el) => items[el].name),
+        keystoneIds,
       },
     },
   };

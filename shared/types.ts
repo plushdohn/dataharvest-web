@@ -59,6 +59,7 @@ export enum SubjectId {
   Summoner = "SUMMONER",
   Champion = "CHAMPION",
   Role = "ROLE",
+  Keystone = "KEYSTONE",
 }
 export enum GroupId {
   Role = "ROLE",

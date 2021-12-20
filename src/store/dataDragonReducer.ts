@@ -26,6 +26,7 @@ export interface DataDragonState {
     [key: number]: Item;
   };
   mythics: string[];
+  keystoneIds: number[];
 }
 
 const INITIAL_STATE: DataDragonState = {
@@ -33,6 +34,7 @@ const INITIAL_STATE: DataDragonState = {
   runes: {},
   items: {},
   mythics: [],
+  keystoneIds: [],
 };
 
 const dataDragonSlice = createSlice({

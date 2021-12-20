@@ -72,6 +72,7 @@ import WinRateSort from "./sorts/WinRateSort";
 import AllStarter from "./starters/AllStarter";
 import PatchStarter from "./starters/PatchStarter";
 import ChampionSubject from "./subjects/ChampionSubject";
+import KeystoneSubject from "./subjects/KeystoneSubject";
 import RoleSubject from "./subjects/RoleSubject";
 import SummonerSubject from "./subjects/SummonerSubject";
 
@@ -154,6 +155,10 @@ export const ASSOCIATIONS: {
     [SubjectId.Summoner]: {
       component: SummonerSubject,
       initialState: "hide on bush",
+    },
+    [SubjectId.Keystone]: {
+      component: KeystoneSubject,
+      initialState: 8112,
     },
   },
   groups: {

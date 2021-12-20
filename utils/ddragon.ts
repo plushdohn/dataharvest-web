@@ -82,6 +82,25 @@ export async function getRuneDataForCurrentPatch(): Promise<{
   return Object.fromEntries(iteratable);
 }
 
+export async function getListOfKeystoneIdsForCurrentPatch(): Promise<number[]> {
+  const res = await fetch(
+    `http://ddragon.leagueoflegends.com/cdn/${process.env.DDRAGON_PATCH}.1/data/en_US/runesReforged.json`
+  );
+  const json = (await res.json()) as DdragonRunesResponse;
+
+  let iteratable: number[] = [];
+
+  for (const tree of json) {
+    const slot = tree.slots[0];
+
+    for (const rune of slot.runes) {
+      iteratable.push(rune.id);
+    }
+  }
+
+  return iteratable;
+}
+
 type DdragonItemResponse = {
   data: {
     [key: number]: {
