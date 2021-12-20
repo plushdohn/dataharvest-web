@@ -13,6 +13,10 @@ class MyDocument extends Document {
             name="keywords"
             content="League of Legends, lol, query, blocks, dataharvest, data, database, games, ranked, soloqueue"
           />
+          <meta
+            name="propeller"
+            content="7c59b5ce5d663056cd043596548ebadf"
+          ></meta>
           <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
           <link
             rel="apple-touch-icon"
