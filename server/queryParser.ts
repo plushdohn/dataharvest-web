@@ -100,7 +100,6 @@ export function parse(source: Query): Document[] {
   // Check if there are sorts to process
   const sort = source.sort;
   if (sort !== undefined) {
-    console.log(sort);
     output.push({
       $sort: sortHandler(sort, source.operation.id),
     });

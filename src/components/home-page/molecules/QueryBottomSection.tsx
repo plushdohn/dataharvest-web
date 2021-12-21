@@ -69,8 +69,6 @@ export default function QueryBottomSection() {
         captcha,
       })
     );
-
-    startTimer();
     setCaptcha(null);
   }
 
@@ -79,6 +77,7 @@ export default function QueryBottomSection() {
       if (captchaRef.current !== null) {
         // @ts-ignore
         captchaRef.current.reset();
+        startTimer();
       }
     }
   }, [loading]);
