@@ -1,5 +1,6 @@
 import { RootState } from "@/src/store";
 import { useSelector } from "react-redux";
+import AdsharesBanner from "../../shared/atoms/AdsharesBanner";
 import AmazonStripAd from "../../shared/atoms/AmazonStripAd";
 import LegalLinks from "../atoms/LegalLinks";
 import OutputNoResultsIllustration from "../atoms/OutputNoResultsIllustration";
@@ -25,7 +26,7 @@ export default function OutputPanel() {
       ) : (
         <OutputResultsScreen />
       )}
-      <AmazonStripAd />
+      <AdsharesBanner />
       <OutputRiotLegalMessage />
       <LegalLinks />
     </div>
