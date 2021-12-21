@@ -1,4 +1,3 @@
-import PickerPanelCategoryContainer from "../atoms/PickerPanelCategoryContainer";
 import PickerPanelFiltersCategory from "../molecules/PickerPanelFiltersCategory";
 import PickerPanelGroupsCategory from "../molecules/PickerPanelGroupsCategory";
 import PickerPanelOperationsCategory from "../molecules/PickerPanelOperationsCategory";

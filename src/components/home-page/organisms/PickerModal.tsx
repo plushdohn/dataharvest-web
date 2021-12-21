@@ -1,7 +1,4 @@
-import { RootState } from "@/src/store";
-import { hidePickerModal } from "@/src/store/uiReducer";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import PickerPanelAdBanner from "../atoms/PickerPanelAdBanner";
 import PickerModalClosingButton from "../molecules/PickerModalClosingButton";
 import PickerPanelFiltersCategory from "../molecules/PickerPanelFiltersCategory";
 import PickerPanelGroupsCategory from "../molecules/PickerPanelGroupsCategory";
@@ -20,6 +17,7 @@ export default function PickerModal() {
       <PickerPanelGroupsCategory />
       <PickerPanelOperationsCategory />
       <PickerPanelSortsCategory />
+      <PickerPanelAdBanner />
     </div>
   );
 }

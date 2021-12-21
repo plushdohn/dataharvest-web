@@ -1,8 +1,8 @@
 import { RootState } from "@/src/store";
 import { useSelector } from "react-redux";
-import AdsharesBanner from "../../shared/atoms/AdsharesBanner";
-import AmazonStripAd from "../../shared/atoms/AmazonStripAd";
+import AdsharesScript from "../../shared/atoms/AdsharesScript";
 import LegalLinks from "../atoms/LegalLinks";
+import OutputAdBanner from "../atoms/OutputAdBanner";
 import OutputNoResultsIllustration from "../atoms/OutputNoResultsIllustration";
 import OutputRiotLegalMessage from "../atoms/OutputRiotLegalMessage";
 import OutputErrorScreen from "../molecules/OutputErrorScreen";
@@ -26,7 +26,8 @@ export default function OutputPanel() {
       ) : (
         <OutputResultsScreen />
       )}
-      <AdsharesBanner />
+      <AdsharesScript />
+      <OutputAdBanner />
       <OutputRiotLegalMessage />
       <LegalLinks />
     </div>
