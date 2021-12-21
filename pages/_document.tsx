@@ -11,7 +11,7 @@ class MyDocument extends Document {
           />
           <meta
             name="keywords"
-            content="League of Legends, lol, query, blocks, dataharvest, data, database, games, ranked, soloqueue"
+            content="League of Legends, lol, query, blocks, dataharvest, data, database, games, ranked, soloqueue, solo queue"
           />
           <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
           <link
