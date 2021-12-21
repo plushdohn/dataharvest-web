@@ -70,7 +70,7 @@ export function OperationBlock<Type>(props: { id: OperationId }) {
   return (
     <BlockContainer
       kind={BlockKind.Operation}
-      onClick={() => dispatch(removeOperation(props.id))}
+      onClick={() => dispatch(removeOperation())}
     >
       <ComponentToMount args={args} setArgs={handleChange} />
     </BlockContainer>
