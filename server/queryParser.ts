@@ -19,6 +19,12 @@ export function parse(source: Query): Document[] {
   const filters = source.filters;
   Object.assign(matchExpr, filterHandler(filters));
 
+  const subject = source.subject;
+
+  if (subject) {
+    Object.assign(matchExpr, subjectHandler(subject.id, subject.args));
+  }
+
   // Add match block to query out
   if (Object.keys(matchExpr).length > 0) {
     output.push({
@@ -32,7 +38,6 @@ export function parse(source: Query): Document[] {
     $unwind: "$participants",
   });
 
-  const subject = source.subject;
   if (subject) {
     output.push({
       $match: subjectHandler(subject.id, subject.args),
