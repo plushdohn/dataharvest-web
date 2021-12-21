@@ -15,7 +15,7 @@ export default function AdsharesBanner() {
       id="adshares-banner"
       style={{
         width: "468px",
-        height: "60pxd",
+        height: "60px",
         display: "inline-block",
         margin: "0 auto",
       }}
