@@ -4,27 +4,26 @@ import {
   GroupId,
   OperationId,
   Query,
+  SortId,
   StarterId,
   SubjectId,
 } from "../../shared/types";
 
 const INITIAL_STATE: Query = {
   starter: {
-    id: StarterId.Patch,
-    args: "11.24",
+    id: StarterId.PatchAndRegion,
+    args: ["11.24", "EUW1"],
   },
   filters: {},
   group: {
     id: GroupId.Champion,
     args: null,
   },
-  operations: {
-    [OperationId.AverageDamageDealtToChampions]: null,
-  },
-  sort: {
+  operation: {
     id: OperationId.AverageDamageDealtToChampions,
-    args: false,
+    args: null,
   },
+  sort: SortId.Descending,
 };
 
 const querySlice = createSlice({
@@ -83,21 +82,12 @@ const querySlice = createSlice({
         args: any;
       }>
     ) => {
-      state.operations[action.payload.id] = action.payload.args || null;
+      state.operation = action.payload;
     },
-    removeOperation: (state, action: PayloadAction<OperationId>) => {
-      delete state.operations[action.payload];
-
-      // also remove current sort if associated with this operation
-      if (state.sort && state.sort.id === action.payload) delete state.sort;
+    removeOperation: (state) => {
+      delete state.operation;
     },
-    updateOrAddSort: (
-      state,
-      action: PayloadAction<{
-        id: OperationId;
-        args: any;
-      }>
-    ) => {
+    updateOrAddSort: (state, action: PayloadAction<SortId>) => {
       state.sort = action.payload;
     },
     removeSort: (state) => {
@@ -107,7 +97,7 @@ const querySlice = createSlice({
       state.filters = {};
       delete state.subject;
       delete state.group;
-      state.operations = {};
+      delete state.operation;
       delete state.sort;
     },
   },

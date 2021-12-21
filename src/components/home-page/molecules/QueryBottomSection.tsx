@@ -6,6 +6,34 @@ import GenericCaptcha from "../../shared/atoms/GenericCaptcha";
 import QueryCanvasClearButton from "../atoms/QueryCanvasClearButton";
 import QueryCanvasRunButton from "../atoms/QueryCanvasRunButton";
 
+function useCooldownTimer(count: number): [number, () => void] {
+  const [secondsRemaining, setSecondsRemaining] = useState(0);
+
+  let timer = useRef<NodeJS.Timer>();
+
+  const startTimer = () => {
+    let index = 0;
+
+    timer.current = setInterval(() => {
+      if (index <= count) {
+        setSecondsRemaining(count - index);
+        index++;
+      } else {
+        if (timer.current) clearInterval(timer.current);
+      }
+    }, 1000);
+  };
+
+  useEffect(
+    () => () => {
+      if (timer.current) clearInterval(timer.current);
+    },
+    []
+  );
+
+  return [secondsRemaining, startTimer];
+}
+
 export default function QueryBottomSection() {
   const [captcha, setCaptcha] = useState<string | null>(null);
   const dispatch = useDispatch();
@@ -14,14 +42,16 @@ export default function QueryBottomSection() {
 
   const loading = useSelector((state: RootState) => state.queryApi.loading);
   const query = useSelector((state: RootState) => state.query);
+
+  const [timer, startTimer] = useCooldownTimer(15);
+
   const runButtonDisabled = useMemo(
-    () => captcha === null || Object.keys(query.operations).length === 0,
-    [captcha, query]
+    () => captcha === null || query.operation === undefined || timer !== 0,
+    [captcha, query, timer]
   );
 
   const validationError = useMemo(() => {
-    if (Object.keys(query.operations).length === 0)
-      return "At least one operation is required.";
+    if (!query.operation) return "An operation is required.";
 
     return null;
   }, [query]);
@@ -40,6 +70,7 @@ export default function QueryBottomSection() {
       })
     );
 
+    startTimer();
     setCaptcha(null);
   }
 
@@ -64,6 +95,11 @@ export default function QueryBottomSection() {
         />
         <QueryCanvasClearButton />
       </div>
+      {timer !== 0 && (
+        <span className="text-sm text-gray-500 mt-2 block">
+          Please wait {timer} seconds before querying again.
+        </span>
+      )}
       {validationError !== null && (
         <span className="mt-2 block text-red-500 text-xs">
           {validationError}

@@ -8,5 +8,10 @@ export default function starterHandler(id: StarterId, args: any): Object {
       };
     case StarterId.All:
       return {};
+    case StarterId.PatchAndRegion:
+      return {
+        patch: args[0],
+        platformId: args[1],
+      };
   }
 }

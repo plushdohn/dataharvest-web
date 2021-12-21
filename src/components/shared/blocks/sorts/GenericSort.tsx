@@ -1,81 +1,50 @@
-import { useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/src/store";
+import { useDispatch } from "react-redux";
 import { removeSort, updateOrAddSort } from "@/src/store/queryReducer";
-import { BlockKind, OperationId } from "shared/types";
+import { BlockKind, SortId } from "shared/types";
 import BlockContainer from "../BlockContainer";
 import { ASSOCIATIONS } from "../associations";
 
-export function SortDummy(props: { id: OperationId; initialState: boolean }) {
-  const ComponentToMount = ASSOCIATIONS.sorts[props.id].component;
+export function SortDummy(props: { id: SortId }) {
+  const ComponentToMount = ASSOCIATIONS.sorts[props.id];
 
   return (
     <BlockContainer kind={BlockKind.Sort}>
-      <ComponentToMount args={props.initialState} setArgs={() => {}} />
+      <ComponentToMount />
     </BlockContainer>
   );
 }
 
-export function SortPicker(props: { id: OperationId; initialState: boolean }) {
-  const [args, setArgs] = useState(props.initialState);
+export function SortPicker(props: { id: SortId }) {
   const dispatch = useDispatch();
-  const currentOperations = useSelector(
-    (state: RootState) => state.query.operations
-  );
-
-  const disabled = useMemo(
-    () => !Object.keys(currentOperations).includes(props.id),
-    [currentOperations]
-  );
 
   function handleClick() {
-    if (disabled) return;
-
-    dispatch(
-      updateOrAddSort({
-        id: props.id,
-        args: args,
-      })
-    );
+    dispatch(updateOrAddSort(props.id));
   }
 
-  const ComponentToMount = ASSOCIATIONS.sorts[props.id].component;
+  const ComponentToMount = ASSOCIATIONS.sorts[props.id];
 
   return (
     <BlockContainer
       kind={BlockKind.Sort}
       onClick={handleClick}
       className="my-4"
-      disabled={disabled}
     >
-      <ComponentToMount args={args} setArgs={setArgs} />
+      <ComponentToMount />
     </BlockContainer>
   );
 }
 
-export function SortBlock(props: { id: OperationId }) {
-  const args = useSelector(
-    (state: RootState) => state.query.sort?.args
-  ) as boolean;
+export function SortBlock(props: { id: SortId }) {
   const dispatch = useDispatch();
 
-  function handleChange(n: boolean) {
-    dispatch(
-      updateOrAddSort({
-        id: props.id,
-        args: n,
-      })
-    );
-  }
-
-  const ComponentToMount = ASSOCIATIONS.sorts[props.id].component;
+  const ComponentToMount = ASSOCIATIONS.sorts[props.id];
 
   return (
     <BlockContainer
       kind={BlockKind.Sort}
       onClick={() => dispatch(removeSort())}
     >
-      <ComponentToMount args={args} setArgs={handleChange} />
+      <ComponentToMount />
     </BlockContainer>
   );
 }

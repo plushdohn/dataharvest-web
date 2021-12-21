@@ -1,6 +1,6 @@
-import { OperationId } from "shared/types";
+import { SortId } from "shared/types";
 import { SortBlock } from "../../shared/blocks/sorts/GenericSort";
 
-export default function QueryCanvasSort(props: { operationId: OperationId }) {
-  return <SortBlock id={props.operationId} />;
+export default function QueryCanvasSort(props: { sortId: SortId }) {
+  return <SortBlock id={props.sortId} />;
 }

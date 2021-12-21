@@ -1,7 +1,9 @@
-import { OperationField, OperationId } from "../../shared/types";
+import { OperationField, OperationId, SortId } from "../../shared/types";
 
-export default function sortHandler(id: OperationId, args: any): Object {
-  switch (id) {
+export default function sortHandler(id: SortId, opId: OperationId): Object {
+  const args = id === SortId.Ascending;
+
+  switch (opId) {
     case OperationId.AverageDamageDealt:
       return {
         [OperationField.AverageDamageDealt]: args ? 1 : -1,

@@ -26,8 +26,6 @@ export function parse(source: Query): Document[] {
     });
   }
 
-  // Get a clean count of games after filtering before they get polluted by other stages
-
   // Unwind in any case
   // TODO: Check if unwind is actually needed
   output.push({
@@ -60,19 +58,18 @@ export function parse(source: Query): Document[] {
     });
   }
 
-  const operations = source.operations;
-  if (Object.keys(operations).length === 0) {
-    throw new Error("At least one operation is required.");
-  }
-
-  // Count games first
+  // Get a sample count before applying operations
   Object.assign(groupExpr, {
     [OperationField.GamesCount]: {
       $sum: 1,
     },
   });
 
-  const [opFirstStage, opSecondStage] = operationsHandler(operations);
+  if (!source.operation) {
+    throw new Error("An operation is required.");
+  }
+
+  const [opFirstStage, opSecondStage] = operationsHandler(source.operation);
   Object.assign(groupExpr, opFirstStage);
 
   // Store group in output
@@ -102,9 +99,10 @@ export function parse(source: Query): Document[] {
 
   // Check if there are sorts to process
   const sort = source.sort;
-  if (sort) {
+  if (sort !== undefined) {
+    console.log(sort);
     output.push({
-      $sort: sortHandler(sort.id, sort.args),
+      $sort: sortHandler(sort, source.operation.id),
     });
   }
 

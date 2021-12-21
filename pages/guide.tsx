@@ -14,6 +14,7 @@ import {
   FilterId,
   GroupId,
   OperationId,
+  SortId,
   StarterId,
   SubjectId,
 } from "shared/types";
@@ -209,10 +210,7 @@ export default function GuidePage() {
                   id={OperationId.AverageDamageDealtToChampions}
                   initialState={null}
                 />
-                <SortDummy
-                  id={OperationId.AverageDamageDealtToChampions}
-                  initialState={false}
-                />
+                <SortDummy id={SortId.Descending} />
               </ExampleBlock>
               <GuideParagraph>
                 In general we aim to have as many grouping blocks as we find
@@ -239,12 +237,8 @@ export default function GuidePage() {
               <GuideSectionSubtitle>Sorts</GuideSectionSubtitle>
               <GuideParagraph>
                 Sort blocks are even more self-explanatory than operation
-                blocks: they sort groups of data by a particular value. <br />{" "}
-                <br />
-                You can sort in descending or ascending order; descending is the
-                default because (from our experience) understanding the highest
-                values of something is usually the reason people use this tool
-                in the first place.
+                blocks: they sort groups of data by the result of the operation
+                previously chosen in your query.
               </GuideParagraph>
             </div>
           </div>

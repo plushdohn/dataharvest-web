@@ -2,6 +2,7 @@ import {
   FilterId,
   GroupId,
   OperationId,
+  SortId,
   StarterId,
   SubjectId,
 } from "shared/types";
@@ -44,32 +45,10 @@ import AverageVisionScoreOp from "./operations/AverageVisionScoreOp";
 import AverageWardsKilledOp from "./operations/AverageWardsKilledOp";
 import AverageWardsPlacedOp from "./operations/AverageWardsPlacedOp";
 import WinRateOp from "./operations/WinRateOp";
-import AverageAssistsSort from "./sorts/AverageAssistsSort";
-import AverageBaronKillsSort from "./sorts/AverageBaronKillsSort";
-import AverageCCTimeDealtSort from "./sorts/AverageCCTimeDealtSort";
-import AverageCsPerMinuteSort from "./sorts/AverageCsPerMinuteSort";
-import AverageCSSort from "./sorts/AverageCSSort";
-import AverageDamageDealtSort from "./sorts/AverageDamageDealtSort";
-import AverageDamageDealtToChampionsSort from "./sorts/AverageDamageDealtToChampionsSort";
-import AverageDamageDealtToStructuresSort from "./sorts/AverageDamageDealtToStructuresSort";
-import AverageDamageTakenSort from "./sorts/AverageDamageTakenSort";
-import AverageDeathsSort from "./sorts/AverageDeathsSort";
-import AverageDragonKillsSort from "./sorts/AverageDragonKillsSort";
-import AverageGoldEarnedSort from "./sorts/AverageGoldEarnedSort";
-import AverageGoldSpentSort from "./sorts/AverageGoldSpentSort";
-import AverageHealingSort from "./sorts/AverageHealingSort";
-import AverageKillsSort from "./sorts/AverageKillsSort";
-import AverageMagicDamageToChampionsSort from "./sorts/AverageMagicDamageToChampionsSort";
-import AveragePhysicalDamageToChampionsSort from "./sorts/AveragePhysicalDamageToChampionsSort";
-import AverageRunVariableValueSort from "./sorts/AverageRuneVariableValueSort";
-import AverageTimeSpentPlayingSort from "./sorts/AverageTimeSpentPlayingSort";
-import AverageTrueDamageDealtSort from "./sorts/AverageTrueDamageDealtSort";
-import AverageTurretKillsSort from "./sorts/AverageTurretKillsSort";
-import AverageVisionScoreSort from "./sorts/AverageVisionScoreSort";
-import AverageWardsKilledSort from "./sorts/AverageWardsKilledSort";
-import AverageWardsPlacedSort from "./sorts/AverageWardsPlacedSort";
-import WinRateSort from "./sorts/WinRateSort";
+import AscendingSort from "./sorts/AscendingSort";
+import DescendingSort from "./sorts/DescendingSort";
 import AllStarter from "./starters/AllStarter";
+import PatchAndRegionStarter from "./starters/PatchAndRegionStarter";
 import PatchStarter from "./starters/PatchStarter";
 import ChampionSubject from "./subjects/ChampionSubject";
 import KeystoneSubject from "./subjects/KeystoneSubject";
@@ -94,7 +73,9 @@ export const ASSOCIATIONS: {
   subjects: Association<SubjectId>;
   groups: Association<GroupId>;
   operations: Association<OperationId>;
-  sorts: Association<OperationId>;
+  sorts: {
+    [key in SortId]: () => JSX.Element;
+  };
 } = {
   starters: {
     [StarterId.All]: {
@@ -103,6 +84,10 @@ export const ASSOCIATIONS: {
     [StarterId.Patch]: {
       component: PatchStarter,
       initialState: "11.24",
+    },
+    [StarterId.PatchAndRegion]: {
+      component: PatchAndRegionStarter,
+      initialState: ["11.24", "EUW"],
     },
   },
   filters: {
@@ -243,66 +228,7 @@ export const ASSOCIATIONS: {
     },
   },
   sorts: {
-    [OperationId.AverageCS]: {
-      component: AverageCSSort,
-    },
-    [OperationId.AverageDamageDealt]: {
-      component: AverageDamageDealtSort,
-    },
-    [OperationId.AverageDamageDealtToChampions]: {
-      component: AverageDamageDealtToChampionsSort,
-    },
-    [OperationId.AverageDamageDealtToStructures]: {
-      component: AverageDamageDealtToStructuresSort,
-    },
-    [OperationId.AverageDamageTaken]: { component: AverageDamageTakenSort },
-    [OperationId.AverageGoldEarned]: { component: AverageGoldEarnedSort },
-    [OperationId.AverageGoldSpent]: { component: AverageGoldSpentSort },
-    [OperationId.AverageHealing]: { component: AverageHealingSort },
-    [OperationId.AverageMagicDamageDealtToChampions]: {
-      component: AverageMagicDamageToChampionsSort,
-    },
-    [OperationId.AveragePhysicalDamageDealtToChampions]: {
-      component: AveragePhysicalDamageToChampionsSort,
-    },
-    [OperationId.AverageVisionScore]: { component: AverageVisionScoreSort },
-    [OperationId.WinRate]: { component: WinRateSort },
-    [OperationId.CsPerMinute]: { component: AverageCsPerMinuteSort },
-    [OperationId.AverageRuneVariableValue]: {
-      component: AverageRunVariableValueSort,
-    },
-    [OperationId.AverageKills]: {
-      component: AverageKillsSort,
-    },
-    [OperationId.AverageDeaths]: {
-      component: AverageDeathsSort,
-    },
-    [OperationId.AverageAssists]: {
-      component: AverageAssistsSort,
-    },
-    [OperationId.AverageTimeSpentPlaying]: {
-      component: AverageTimeSpentPlayingSort,
-    },
-    [OperationId.AverageWardsPlaced]: {
-      component: AverageWardsPlacedSort,
-    },
-    [OperationId.AverageWardsKilled]: {
-      component: AverageWardsKilledSort,
-    },
-    [OperationId.AverageTrueDamageDealt]: {
-      component: AverageTrueDamageDealtSort,
-    },
-    [OperationId.AverageCCTimeDealt]: {
-      component: AverageCCTimeDealtSort,
-    },
-    [OperationId.AverageTurretKills]: {
-      component: AverageTurretKillsSort,
-    },
-    [OperationId.AverageBaronKills]: {
-      component: AverageBaronKillsSort,
-    },
-    [OperationId.AverageDragonKills]: {
-      component: AverageDragonKillsSort,
-    },
+    [SortId.Ascending]: AscendingSort,
+    [SortId.Descending]: DescendingSort,
   },
 };

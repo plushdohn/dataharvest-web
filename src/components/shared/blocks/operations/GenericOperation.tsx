@@ -52,9 +52,8 @@ export function OperationPicker<Type>(props: {
 }
 
 export function OperationBlock<Type>(props: { id: OperationId }) {
-  const args = useSelector(
-    (state: RootState) => state.query.operations[props.id]
-  );
+  const args = useSelector((state: RootState) => state.query.operation?.args);
+
   const dispatch = useDispatch();
 
   function handleChange(n: Type) {

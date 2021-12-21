@@ -43,6 +43,7 @@ export enum OperationField {
 export enum StarterId {
   Patch = "PATCH",
   All = "ALL",
+  PatchAndRegion = "PATCH_AND_REGION",
 }
 export enum FilterId {
   Summoner = "SUMMONER",
@@ -95,6 +96,10 @@ export enum OperationId {
   AverageBaronKills = "AVERAGE_BARON_KILLS",
   AverageDragonKills = "AVERAGE_DRAGON_KILLS",
 }
+export enum SortId {
+  Ascending = "ASCENDING",
+  Descending = "DESCENDING",
+}
 
 type SingleArg = string | number | boolean;
 export type BlockArgs = SingleArg[] | SingleArg;
@@ -115,13 +120,11 @@ export interface Query {
     id: GroupId;
     args: any;
   };
-  operations: {
-    [key in OperationId]?: any;
-  };
-  sort?: {
+  operation?: {
     id: OperationId;
     args: any;
   };
+  sort?: SortId;
 }
 
 export enum ClientHints {
