@@ -20,7 +20,7 @@ export default function OutputAdBanner() {
       ) : (
         <div
           className="_fa7cdd4c68507744"
-          data-zone="196961007e564751aaf6adc5d603fda8"
+          data-zone="f075fe8fa2ff443da9c7923d39df73a8"
           style={{ width: "234px", height: "60px" }}
         />
       )}
