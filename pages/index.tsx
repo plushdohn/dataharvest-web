@@ -31,12 +31,15 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const isFirstTimer = window.localStorage.getItem("VISITED_BEFORE");
+    const storedLastWelcomeModalTime = window.localStorage.getItem(
+      "LAST_WELCOME_MODAL_TIME"
+    );
 
-    if (isFirstTimer === null) {
+    if (
+      storedLastWelcomeModalTime === null ||
+      parseInt(storedLastWelcomeModalTime) + 604800000 < Date.now()
+    ) {
       dispatch(showWelcomeModal());
-
-      window.localStorage.setItem("VISITED_BEFORE", "YES");
     }
   }, []);
 

@@ -42,7 +42,7 @@ export function StarterPicker<Type>(props: {
       kind={BlockKind.Starter}
       onClick={handleClick}
       className="mb-4"
-      disabled={props.id === StarterId.All || props.id === StarterId.Patch}
+      disabled={props.id === StarterId.All}
     >
       <ComponentToMount args={args} setArgs={setArgs} />
     </BlockContainer>

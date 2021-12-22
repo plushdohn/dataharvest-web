@@ -1,11 +1,25 @@
 import { hideWelcomeModal } from "@/src/store/uiReducer";
 import Link from "next/link";
+import { useMemo } from "react";
 import { useDispatch } from "react-redux";
 
 export default function WelcomeModal() {
   const dispatch = useDispatch();
 
+  const isFirstTimer = useMemo(() => {
+    const stored = window.localStorage.getItem("LAST_WELCOME_MODAL_TIME");
+
+    if (stored === null) return true;
+
+    return false;
+  }, []);
+
   function handleClosureClick() {
+    window.localStorage.setItem(
+      "LAST_WELCOME_MODAL_TIME",
+      Date.now().toString()
+    );
+
     dispatch(hideWelcomeModal());
   }
 
@@ -13,7 +27,9 @@ export default function WelcomeModal() {
     <div className="absolute w-full h-full bg-alphagray flex justify-center items-center">
       <div className="flex flex-col justify-center items-center p-16 bg-gray-900 rounded w-96">
         <span className="text-white font-semibold text-center mb-2">
-          Looks like it&apos;s your first time.
+          {isFirstTimer
+            ? `Looks like it's your first time.`
+            : "It's been a while."}
         </span>
         <span className="text-gray-500 text-center">
           Would you like to add your match history to our database?

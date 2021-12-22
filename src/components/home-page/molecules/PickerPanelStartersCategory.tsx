@@ -15,9 +15,7 @@ export default function PickerPanelStartersCategory() {
             id={key as StarterId}
             initialState={data.initialState}
           />
-          {(key === StarterId.All || key === StarterId.Patch) && (
-            <PickerPanelDisabledBlock />
-          )}
+          {key === StarterId.All && <PickerPanelDisabledBlock />}
         </div>
       ))}
     </PickerPanelCategoryContainer>
