@@ -7,6 +7,12 @@ export default function QueryCanvasRunButton(props: {
   callback: () => void;
   className?: string;
 }) {
+  function handleClick() {
+    if (props.disabled) return;
+
+    props.callback();
+  }
+
   return (
     <button
       className={`py-1.5 px-4 text-sm bg-gray-800 rounded flex justify-center items-center ${
@@ -14,7 +20,7 @@ export default function QueryCanvasRunButton(props: {
           ? "cursor-not-allowed text-gray-400"
           : "cursor-pointer text-white hover:bg-gray-700"
       } ${props.className ?? ""}`}
-      onClick={props.callback}
+      onClick={handleClick}
     >
       {props.loading ? (
         <>
