@@ -12,7 +12,7 @@ import {
 const INITIAL_STATE: Query = {
   starter: {
     id: StarterId.PatchAndRegion,
-    args: ["11.24", "EUW1"],
+    args: ["12.2", "EUW1"],
   },
   filters: {},
   group: {

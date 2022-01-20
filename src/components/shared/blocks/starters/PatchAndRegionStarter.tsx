@@ -18,6 +18,7 @@ export default function PatchAndRegionStarter({ args, setArgs }: Props) {
     <>
       <span>Use games from patch&nbsp;</span>
       <SelectInputForBlocks onChange={handlePatchChange} value={args[0]}>
+        <option value="12.2">12.2</option>
         <option value="12.1">12.1</option>
         <option value="11.24">11.24</option>
       </SelectInputForBlocks>
